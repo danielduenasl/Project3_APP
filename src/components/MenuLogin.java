@@ -66,8 +66,8 @@ public class MenuLogin extends javax.swing.JPanel {
         jLabel1.setFont(new java.awt.Font("Segoe UI", 3, 24)); // NOI18N
         jLabel1.setForeground(new java.awt.Color(255, 255, 255));
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/d6.png"))); // NOI18N
-        jLabel1.setText("EVENTS");
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/birthday-and-party (1).png"))); // NOI18N
+        jLabel1.setText("Party Planner");
         jLabel1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
         jLabel1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
 
