@@ -4,6 +4,8 @@
  */
 package forms;
 
+import frames.Login;
+import frames.MainMenu;
 import java.awt.Color;
 
 /**
@@ -12,11 +14,14 @@ import java.awt.Color;
  */
 public class jpLogin extends javax.swing.JPanel {
 
+    private Login loog;
     /**
      * Creates new form jpLogin
      */
-    public jpLogin() {
+    public jpLogin(Login login) {
         initComponents();
+        
+        loog = login;
     }
 
     /**
@@ -152,7 +157,9 @@ public class jpLogin extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jloginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jloginMouseClicked
-
+        MainMenu mainM = new MainMenu();
+        mainM.show();
+        loog.setVisible(false);
     }//GEN-LAST:event_jloginMouseClicked
 
     private void jloginMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jloginMouseEntered
