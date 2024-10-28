@@ -74,8 +74,9 @@ public class Login extends javax.swing.JFrame {
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
-        setMinimumSize(new java.awt.Dimension(740, 540));
+        setMinimumSize(new java.awt.Dimension(740, 600));
         setUndecorated(true);
+        setPreferredSize(new java.awt.Dimension(740, 600));
         setResizable(false);
 
         jpBG.setBackground(new java.awt.Color(255, 255, 255));
@@ -257,8 +258,8 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JPanel jpBGLeft;
     private javax.swing.JPanel jpBtns;
     private javax.swing.JPanel jpClose;
-    private javax.swing.JPanel jpContent;
-    private javax.swing.JPanel jpHeaderBar;
+    public javax.swing.JPanel jpContent;
+    public javax.swing.JPanel jpHeaderBar;
     private javax.swing.JPanel jpMax;
     private components.MenuLogin menuLogin1;
     // End of variables declaration//GEN-END:variables

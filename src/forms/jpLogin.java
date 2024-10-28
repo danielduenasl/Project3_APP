@@ -6,6 +6,7 @@ package forms;
 
 import frames.Login;
 import frames.MainMenu;
+import java.awt.BorderLayout;
 import java.awt.Color;
 
 /**
@@ -104,8 +105,13 @@ public class jpLogin extends javax.swing.JPanel {
         jlPass1.setFont(new java.awt.Font("Roboto", 1, 10)); // NOI18N
         jlPass1.setForeground(new java.awt.Color(204, 204, 204));
         jlPass1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlPass1.setText("You don't have a user? create a user");
+        jlPass1.setText("Don’t have an account? Create one now.");
         jlPass1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jlPass1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlPass1MouseClicked(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -120,7 +126,7 @@ public class jpLogin extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(215, 215, 215)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jpBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                    .addComponent(jpBtn, javax.swing.GroupLayout.DEFAULT_SIZE, 178, Short.MAX_VALUE)
                     .addComponent(jlUser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jlPass, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(txtUser, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
@@ -181,6 +187,27 @@ public class jpLogin extends javax.swing.JPanel {
     private void txtpasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpasswordKeyPressed
 
     }//GEN-LAST:event_txtpasswordKeyPressed
+
+    private void jlPass1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlPass1MouseClicked
+       
+        jpCreateUser createUser = new jpCreateUser();
+        createUser.setSize(600, 566);
+        createUser.setLocation(0, 0);
+        
+        jpContentLogin contentLogin = new jpContentLogin();
+        contentLogin.removeAll();
+        contentLogin.add(loog.jpHeaderBar, BorderLayout.NORTH);
+        contentLogin.add(createUser, BorderLayout.CENTER);
+        contentLogin.revalidate();
+        contentLogin.repaint();
+        
+        loog.jpContent.removeAll();
+        loog.jpContent.add(contentLogin, BorderLayout.CENTER);
+        loog.jpContent.revalidate();
+        loog.jpContent.repaint();
+        
+        jpBtn.setBackground(new Color (255,51,153));
+    }//GEN-LAST:event_jlPass1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
