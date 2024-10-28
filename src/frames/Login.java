@@ -4,11 +4,16 @@
  */
 package frames;
 
+import forms.jpContentLogin;
+import forms.jpContentMain;
+import forms.jpLogin;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.KeyEvent;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import javax.swing.JComponent;
 
 /**
  *
@@ -16,16 +21,35 @@ import java.sql.SQLException;
  */
 public class Login extends javax.swing.JFrame {
 
-    private static String URL = "jdbc:mariadb://";
-    private static String USER = "";
-    private static String PASSWORD = "";
+    private jpLogin login;
+    private jpContentLogin contentLogin;
     /**
      * Creates new form Login
      */
     public Login() {
         initComponents();
         
+        login = new jpLogin();
+        contentLogin = new jpContentLogin();
+        
+        
+        
+        setForm(login);
         //menuLogin2.initMoving(this);
+    }
+    
+    private void setForm(JComponent com) {
+        jpContentLogin contentLogin = new jpContentLogin();
+        contentLogin.removeAll();
+        contentLogin.add(jpHeaderBar, BorderLayout.NORTH);
+        contentLogin.add(com, BorderLayout.CENTER);
+        contentLogin.revalidate();
+        contentLogin.repaint();
+        
+        jpContent.removeAll();
+        jpContent.add(contentLogin, BorderLayout.CENTER);
+        jpContent.revalidate();
+        jpContent.repaint();
     }
 
     /**
@@ -40,22 +64,13 @@ public class Login extends javax.swing.JFrame {
         jpBG = new javax.swing.JPanel();
         jpBGLeft = new javax.swing.JPanel();
         menuLogin1 = new components.MenuLogin();
-        jpBGCenter = new javax.swing.JPanel();
+        jpContent = new javax.swing.JPanel();
         jpHeaderBar = new javax.swing.JPanel();
         jpBtns = new javax.swing.JPanel();
         jpClose = new javax.swing.JPanel();
         jlClose = new javax.swing.JLabel();
         jpMax = new javax.swing.JPanel();
         jlMax = new javax.swing.JLabel();
-        jpContain = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
-        jpBtn = new javax.swing.JPanel();
-        jlogin = new javax.swing.JLabel();
-        jlPass = new javax.swing.JLabel();
-        jlUser = new javax.swing.JLabel();
-        txtUser = new models.CustomTextField();
-        txtpassword = new models.CustomPassField();
-        jlPass1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -72,8 +87,9 @@ public class Login extends javax.swing.JFrame {
 
         jpBG.add(jpBGLeft, java.awt.BorderLayout.LINE_START);
 
-        jpBGCenter.setBackground(new java.awt.Color(255, 255, 255));
-        jpBGCenter.setLayout(new java.awt.BorderLayout());
+        jpContent.setBackground(new java.awt.Color(255, 255, 255));
+        jpContent.setForeground(new java.awt.Color(204, 204, 204));
+        jpContent.setLayout(new java.awt.BorderLayout());
 
         jpHeaderBar.setBackground(new java.awt.Color(255, 255, 255));
         jpHeaderBar.setPreferredSize(new java.awt.Dimension(490, 34));
@@ -139,111 +155,9 @@ public class Login extends javax.swing.JFrame {
 
         jpHeaderBar.add(jpBtns, java.awt.BorderLayout.LINE_END);
 
-        jpBGCenter.add(jpHeaderBar, java.awt.BorderLayout.PAGE_START);
+        jpContent.add(jpHeaderBar, java.awt.BorderLayout.NORTH);
 
-        jpContain.setBackground(new java.awt.Color(255, 255, 255));
-
-        jLabel1.setFont(new java.awt.Font("Roboto", 1, 48)); // NOI18N
-        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("LOGIN");
-
-        jpBtn.setBackground(new java.awt.Color(255, 51, 153));
-        jpBtn.setLayout(new java.awt.BorderLayout());
-
-        jlogin.setBackground(new java.awt.Color(255, 255, 255));
-        jlogin.setFont(new java.awt.Font("Roboto", 1, 14)); // NOI18N
-        jlogin.setForeground(new java.awt.Color(255, 255, 255));
-        jlogin.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlogin.setText("LOGIN");
-        jlogin.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                jloginMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                jloginMouseEntered(evt);
-            }
-            public void mouseExited(java.awt.event.MouseEvent evt) {
-                jloginMouseExited(evt);
-            }
-        });
-        jlogin.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                jloginKeyPressed(evt);
-            }
-        });
-        jpBtn.add(jlogin, java.awt.BorderLayout.CENTER);
-
-        jlPass.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
-        jlPass.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlPass.setText("PASSWORD");
-
-        jlUser.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
-        jlUser.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlUser.setText("USER");
-
-        txtUser.setToolTipText("Ingrese su usuario");
-        txtUser.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtUserKeyPressed(evt);
-            }
-        });
-
-        txtpassword.addKeyListener(new java.awt.event.KeyAdapter() {
-            public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtpasswordKeyPressed(evt);
-            }
-        });
-
-        jlPass1.setFont(new java.awt.Font("Roboto", 1, 10)); // NOI18N
-        jlPass1.setForeground(new java.awt.Color(204, 204, 204));
-        jlPass1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jlPass1.setText("You don't have a user? create a user");
-        jlPass1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
-
-        javax.swing.GroupLayout jpContainLayout = new javax.swing.GroupLayout(jpContain);
-        jpContain.setLayout(jpContainLayout);
-        jpContainLayout.setHorizontalGroup(
-            jpContainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpContainLayout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jpContainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jpContainLayout.createSequentialGroup()
-                        .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addContainerGap())
-                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpContainLayout.createSequentialGroup()
-                        .addGap(0, 167, Short.MAX_VALUE)
-                        .addGroup(jpContainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(jlUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jlPass, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
-                            .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(txtpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
-                            .addComponent(jlPass1, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jpBtn, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(169, 169, 169))))
-        );
-        jpContainLayout.setVerticalGroup(
-            jpContainLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpContainLayout.createSequentialGroup()
-                .addGap(80, 80, 80)
-                .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(73, 73, 73)
-                .addComponent(jlUser, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jlPass, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtpassword, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 75, Short.MAX_VALUE)
-                .addComponent(jlPass1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jpBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(73, 73, 73))
-        );
-
-        jpBGCenter.add(jpContain, java.awt.BorderLayout.CENTER);
-
-        jpBG.add(jpBGCenter, java.awt.BorderLayout.CENTER);
+        jpBG.add(jpContent, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(jpBG, java.awt.BorderLayout.CENTER);
 
@@ -260,18 +174,6 @@ public class Login extends javax.swing.JFrame {
     private void jpHeaderBarMouseDragged(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpHeaderBarMouseDragged
         this.setLocation(evt.getXOnScreen() - x, evt.getYOnScreen() - y);
     }//GEN-LAST:event_jpHeaderBarMouseDragged
-
-    private void jloginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jloginMouseClicked
-        tryConnection();
-    }//GEN-LAST:event_jloginMouseClicked
-
-    private void jloginMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jloginMouseEntered
-        jpBtn.setBackground(new Color (255,51,51));
-    }//GEN-LAST:event_jloginMouseEntered
-
-    private void jloginMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jloginMouseExited
-        jpBtn.setBackground(new Color (255,51,153));
-    }//GEN-LAST:event_jloginMouseExited
 
     private void jlCloseMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlCloseMouseEntered
         jpClose.setBackground(new Color(204, 204, 204));
@@ -302,27 +204,6 @@ public class Login extends javax.swing.JFrame {
     private void jpHeaderBarMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jpHeaderBarMouseClicked
 
     }//GEN-LAST:event_jpHeaderBarMouseClicked
-
-    private void txtUserKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUserKeyPressed
-        if(evt.getKeyCode()== KeyEvent.VK_TAB) {
-            txtpassword.requestFocus();
-        } 
-    }//GEN-LAST:event_txtUserKeyPressed
-
-    private void txtpasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpasswordKeyPressed
-        if(evt.getKeyCode()== KeyEvent.VK_TAB) {
-        } else if (evt.getKeyCode() == KeyEvent.VK_TAB && evt.isShiftDown()) {
-            txtpassword.requestFocus();
-        }
-    }//GEN-LAST:event_txtpasswordKeyPressed
-
-    private void jloginKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_jloginKeyPressed
-        if(evt.getKeyCode()== KeyEvent.VK_ENTER) {
-            tryConnection();
-        } else {
-            jpBtn.setBackground(new Color (255,51,153));           
-        }
-    }//GEN-LAST:event_jloginKeyPressed
       
     public void tryConnection(){
 
@@ -330,10 +211,6 @@ public class Login extends javax.swing.JFrame {
             MM.show();
             this.setVisible(false);
 
-    }
-    
-    public static Connection getConnection() throws SQLException {
-        return DriverManager.getConnection(URL, USER, PASSWORD);
     }
     
     /**
@@ -374,24 +251,15 @@ public class Login extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jlClose;
     private javax.swing.JLabel jlMax;
-    private javax.swing.JLabel jlPass;
-    private javax.swing.JLabel jlPass1;
-    private javax.swing.JLabel jlUser;
-    private javax.swing.JLabel jlogin;
     private javax.swing.JPanel jpBG;
-    private javax.swing.JPanel jpBGCenter;
     private javax.swing.JPanel jpBGLeft;
-    private javax.swing.JPanel jpBtn;
     private javax.swing.JPanel jpBtns;
     private javax.swing.JPanel jpClose;
-    private javax.swing.JPanel jpContain;
+    private javax.swing.JPanel jpContent;
     private javax.swing.JPanel jpHeaderBar;
     private javax.swing.JPanel jpMax;
     private components.MenuLogin menuLogin1;
-    private models.CustomTextField txtUser;
-    private models.CustomPassField txtpassword;
     // End of variables declaration//GEN-END:variables
 }
