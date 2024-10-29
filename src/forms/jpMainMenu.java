@@ -4,6 +4,8 @@
  */
 package forms;
 
+import frames.MainMenu;
+import java.awt.BorderLayout;
 import java.awt.Desktop;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
@@ -16,12 +18,14 @@ import java.time.LocalTime;
  */
 public class jpMainMenu extends javax.swing.JPanel {
 
+    private MainMenu mainMenu;
     /**
      * Creates new form jpMainMenu
      */
-    public jpMainMenu() {
+    public jpMainMenu(MainMenu mainM) {
         initComponents();
         
+        mainMenu = mainM;
 
         LocalTime now = LocalTime.now();
         String saludo;
@@ -87,27 +91,69 @@ public class jpMainMenu extends javax.swing.JPanel {
 
         jlbbSh.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlbbSh.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/baby-shower.png"))); // NOI18N
+        jlbbSh.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jlbbSh.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlbbShMouseClicked(evt);
+            }
+        });
 
         jlbrtd.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlbrtd.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/happy-birthday.png"))); // NOI18N
+        jlbrtd.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jlbrtd.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlbrtdMouseClicked(evt);
+            }
+        });
 
         jl15.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jl15.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/quinceanera.png"))); // NOI18N
+        jl15.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jl15.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jl15MouseClicked(evt);
+            }
+        });
 
         jlbbSh3.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlbbSh3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/recien-casados.png"))); // NOI18N
+        jlbbSh3.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jlbbSh3.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlbbSh3MouseClicked(evt);
+            }
+        });
 
         jlbbSh4.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlbbSh4.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/graduacion.png"))); // NOI18N
+        jlbbSh4.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jlbbSh4.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlbbSh4MouseClicked(evt);
+            }
+        });
 
         jlbbSh5.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlbbSh5.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/copa-de-champan.png"))); // NOI18N
+        jlbbSh5.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jlbbSh5.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlbbSh5MouseClicked(evt);
+            }
+        });
 
         jlbbSh6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlbbSh6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cabina-de-dj.png"))); // NOI18N
+        jlbbSh6.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jlbbSh6.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlbbSh6MouseClicked(evt);
+            }
+        });
 
-        jLabel2.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 18)); // NOI18N
-        jLabel2.setText("Crea un evento de manera profesional y endeudate con nosotros!");
+        jLabel2.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel2.setText("Crea el evento que desees de manera sencilla!");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -180,6 +226,58 @@ public class jpMainMenu extends javax.swing.JPanel {
         add(jPanel1, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
+    private void jlbbShMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbbShMouseClicked
+        String optionSend = "BabyShower";
+        CreaEventos(optionSend);
+    }//GEN-LAST:event_jlbbShMouseClicked
+
+    private void jlbrtdMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbrtdMouseClicked
+        String optionSend = "Cumpleaños";
+        CreaEventos(optionSend);
+    }//GEN-LAST:event_jlbrtdMouseClicked
+
+    private void jl15MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jl15MouseClicked
+        String optionSend = "Quinceaños";
+        CreaEventos(optionSend);
+    }//GEN-LAST:event_jl15MouseClicked
+
+    private void jlbbSh4MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbbSh4MouseClicked
+        String optionSend = "Graduacion";
+        CreaEventos(optionSend);
+    }//GEN-LAST:event_jlbbSh4MouseClicked
+
+    private void jlbbSh3MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbbSh3MouseClicked
+        String optionSend = "Boda";
+        CreaEventos(optionSend);
+    }//GEN-LAST:event_jlbbSh3MouseClicked
+
+    private void jlbbSh5MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbbSh5MouseClicked
+        String optionSend = "Convivio";
+        CreaEventos(optionSend);
+    }//GEN-LAST:event_jlbbSh5MouseClicked
+
+    private void jlbbSh6MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlbbSh6MouseClicked
+        String optionSend = "Fiesta";
+        CreaEventos(optionSend);
+    }//GEN-LAST:event_jlbbSh6MouseClicked
+
+    public void CreaEventos(String opcion){
+        jpCreateEvent crearEvent = new jpCreateEvent(mainMenu, opcion);
+        crearEvent.setSize(760, 606);
+        crearEvent.setLocation(0, 0);
+
+        jpContentMain contentMain = new jpContentMain();
+        contentMain.removeAll();
+        contentMain.add(mainMenu.jpBarHeader, BorderLayout.NORTH);
+        contentMain.add(crearEvent, BorderLayout.CENTER);
+        contentMain.revalidate();
+        contentMain.repaint();
+        
+        mainMenu.jpContent.removeAll();
+        mainMenu.jpContent.add(contentMain, BorderLayout.CENTER);
+        mainMenu.jpContent.revalidate();
+        mainMenu.jpContent.repaint();
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;

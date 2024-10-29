@@ -8,6 +8,7 @@ import frames.Login;
 import frames.MainMenu;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -16,6 +17,8 @@ import java.awt.Color;
 public class jpLogin extends javax.swing.JPanel {
 
     private Login loog;
+    private String userName;
+    private String password;
     /**
      * Creates new form jpLogin
      */
@@ -161,9 +164,19 @@ public class jpLogin extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jloginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jloginMouseClicked
-        MainMenu mainM = new MainMenu();
-        mainM.show();
-        loog.setVisible(false);
+        userName = txtUser.getText();
+        password = String.valueOf(txtpassword.getPassword());
+        
+        if (!userName.isEmpty() && !password.isEmpty()){
+            MainMenu mainM = new MainMenu();
+            mainM.show();
+            loog.setVisible(false);
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos, intente de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
+
+        }
+               
     }//GEN-LAST:event_jloginMouseClicked
 
     private void jloginMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jloginMouseEntered

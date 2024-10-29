@@ -18,16 +18,15 @@ public class jpCreateEvent extends javax.swing.JPanel {
     /**
      * Creates new form jpCreateEvent
      */
-    public jpCreateEvent(MainMenu mainM) {
+    public jpCreateEvent(MainMenu mainM, String opcion) {
         initComponents();
         
         this.mainMenu = mainM;
         
-        Eventoselec();
+        Eventoselec(opcion);
     }
     
-    private void Eventoselec(){
-        String evntoselec = (String) cbxEvnt.getSelectedItem();
+    private void Eventoselec(String opcn){
 
         ImageIcon bbshow = new ImageIcon(getClass().getResource("/images/baby-shower.png"));
         ImageIcon cumple = new ImageIcon(getClass().getResource("/images/happy-birthday.png"));
@@ -37,31 +36,31 @@ public class jpCreateEvent extends javax.swing.JPanel {
         ImageIcon convv = new ImageIcon(getClass().getResource("/images/copa-de-champan.png"));
         ImageIcon party = new ImageIcon(getClass().getResource("/images/cabina-de-dj.png"));
         
-        if (evntoselec.equals("BabyShower")){
+        if (opcn.equals("BabyShower")){
             jlTipoEvent.setIcon(bbshow);
             jlTipoEvent.setHorizontalAlignment(CENTER);
             jlTipoEvent.setVerticalAlignment(CENTER);
-        } else if (evntoselec.equals("Cumpleaños")){
+        } else if (opcn.equals("Cumpleaños")){
             jlTipoEvent.setIcon(cumple);
             jlTipoEvent.setHorizontalAlignment(CENTER);
             jlTipoEvent.setVerticalAlignment(CENTER);
-        } else if (evntoselec.equals("Quinceaños")){
+        } else if (opcn.equals("Quinceaños")){
             jlTipoEvent.setIcon(quince);
             jlTipoEvent.setHorizontalAlignment(CENTER);
             jlTipoEvent.setVerticalAlignment(CENTER);
-        } else if (evntoselec.equals("Graduacion")){
+        } else if (opcn.equals("Graduacion")){
             jlTipoEvent.setIcon(gradua);
             jlTipoEvent.setHorizontalAlignment(CENTER);
             jlTipoEvent.setVerticalAlignment(CENTER);
-        } else if (evntoselec.equals("Boda")){
+        } else if (opcn.equals("Boda")){
             jlTipoEvent.setIcon(wedding);
             jlTipoEvent.setHorizontalAlignment(CENTER);
             jlTipoEvent.setVerticalAlignment(CENTER);
-        }else if (evntoselec.equals("Convivio")){
+        }else if (opcn.equals("Convivio")){
             jlTipoEvent.setIcon(convv);
             jlTipoEvent.setHorizontalAlignment(CENTER);
             jlTipoEvent.setVerticalAlignment(CENTER);
-        }else if (evntoselec.equals("Fiesta")){
+        }else if (opcn.equals("Fiesta")){
             jlTipoEvent.setIcon(party);
             jlTipoEvent.setHorizontalAlignment(CENTER);
             jlTipoEvent.setVerticalAlignment(CENTER);
@@ -145,7 +144,45 @@ public class jpCreateEvent extends javax.swing.JPanel {
     }// </editor-fold>//GEN-END:initComponents
 
     private void cbxEvntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxEvntActionPerformed
-        Eventoselec();
+        String evntoselec = (String) cbxEvnt.getSelectedItem();
+
+        ImageIcon bbshow = new ImageIcon(getClass().getResource("/images/baby-shower.png"));
+        ImageIcon cumple = new ImageIcon(getClass().getResource("/images/happy-birthday.png"));
+        ImageIcon quince = new ImageIcon(getClass().getResource("/images/quinceanera.png"));
+        ImageIcon gradua = new ImageIcon(getClass().getResource("/images/graduacion.png"));
+        ImageIcon wedding = new ImageIcon(getClass().getResource("/images/recien-casados.png"));
+        ImageIcon convv = new ImageIcon(getClass().getResource("/images/copa-de-champan.png"));
+        ImageIcon party = new ImageIcon(getClass().getResource("/images/cabina-de-dj.png"));
+        
+        if (evntoselec.equals("BabyShower")){
+            jlTipoEvent.setIcon(bbshow);
+            jlTipoEvent.setHorizontalAlignment(CENTER);
+            jlTipoEvent.setVerticalAlignment(CENTER);
+        } else if (evntoselec.equals("Cumpleaños")){
+            jlTipoEvent.setIcon(cumple);
+            jlTipoEvent.setHorizontalAlignment(CENTER);
+            jlTipoEvent.setVerticalAlignment(CENTER);
+        } else if (evntoselec.equals("Quinceaños")){
+            jlTipoEvent.setIcon(quince);
+            jlTipoEvent.setHorizontalAlignment(CENTER);
+            jlTipoEvent.setVerticalAlignment(CENTER);
+        } else if (evntoselec.equals("Graduacion")){
+            jlTipoEvent.setIcon(gradua);
+            jlTipoEvent.setHorizontalAlignment(CENTER);
+            jlTipoEvent.setVerticalAlignment(CENTER);
+        } else if (evntoselec.equals("Boda")){
+            jlTipoEvent.setIcon(wedding);
+            jlTipoEvent.setHorizontalAlignment(CENTER);
+            jlTipoEvent.setVerticalAlignment(CENTER);
+        }else if (evntoselec.equals("Convivio")){
+            jlTipoEvent.setIcon(convv);
+            jlTipoEvent.setHorizontalAlignment(CENTER);
+            jlTipoEvent.setVerticalAlignment(CENTER);
+        }else if (evntoselec.equals("Fiesta")){
+            jlTipoEvent.setIcon(party);
+            jlTipoEvent.setHorizontalAlignment(CENTER);
+            jlTipoEvent.setVerticalAlignment(CENTER);
+        }
     }//GEN-LAST:event_cbxEvntActionPerformed
 
 

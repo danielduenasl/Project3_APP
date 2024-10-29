@@ -31,7 +31,7 @@ public class MainMenu extends javax.swing.JFrame {
         initComponents();
         
         setBackground(new Color(0, 0, 0, 0));
-        MainM = new jpMainMenu();
+        MainM = new jpMainMenu(this);
         alumnos = new jpEvents(this);
         calif = new jpPersons(this);
 
@@ -59,7 +59,7 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
         //  set when system open start with home
-        setForm(new jpMainMenu());
+        setForm(new jpMainMenu(this));
         
     }
     

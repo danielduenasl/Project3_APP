@@ -191,26 +191,36 @@ public class jpCreateUser extends javax.swing.JPanel {
         password = String.valueOf(txtpassword.getPassword());
         confirmPass = String.valueOf(txtpassword1.getPassword());
         
+        if (!userName.isEmpty() && !password.isEmpty() && !confirmPass.isEmpty()){
+            
+            if (password.equals(confirmPass)){                   
+                JOptionPane.showMessageDialog(null, "El usuario se ha creado con exito.", "Mensaje", JOptionPane.PLAIN_MESSAGE);           
+            
+                //Validacion API de credenciales
+                jpLogin logIN = new jpLogin(loog);
+                logIN.setSize(600, 566);
+                logIN.setLocation(0, 0);
+
+                jpContentLogin contentLogin = new jpContentLogin();
+                contentLogin.removeAll();
+                contentLogin.add(loog.jpHeaderBar, BorderLayout.NORTH);
+                contentLogin.add(logIN, BorderLayout.CENTER);
+                contentLogin.revalidate();
+                contentLogin.repaint();
+
+                loog.jpContent.removeAll();
+                loog.jpContent.add(contentLogin, BorderLayout.CENTER);
+                loog.jpContent.revalidate();
+                loog.jpContent.repaint();
+
+                jpBtn.setBackground(new Color (255,51,153));
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden, verifique por favor.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+            
+        }
         
-        JOptionPane.showMessageDialog(null, "El usuario se ha creado con exito.", "Mensaje", JOptionPane.PLAIN_MESSAGE);
-        
-        jpLogin logIN = new jpLogin(loog);
-        logIN.setSize(600, 566);
-        logIN.setLocation(0, 0);
-
-        jpContentLogin contentLogin = new jpContentLogin();
-        contentLogin.removeAll();
-        contentLogin.add(loog.jpHeaderBar, BorderLayout.NORTH);
-        contentLogin.add(logIN, BorderLayout.CENTER);
-        contentLogin.revalidate();
-        contentLogin.repaint();
-
-        loog.jpContent.removeAll();
-        loog.jpContent.add(contentLogin, BorderLayout.CENTER);
-        loog.jpContent.revalidate();
-        loog.jpContent.repaint();
-
-        jpBtn.setBackground(new Color (255,51,153));
     }//GEN-LAST:event_jloginMouseClicked
 
     private void jloginMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jloginMouseEntered

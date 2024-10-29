@@ -238,7 +238,7 @@ public class jpEvents extends javax.swing.JPanel {
     }//GEN-LAST:event_jlBtnInfoMouseExited
 
     private void jlBtnInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlBtnInfoMouseClicked
-        jpCreateEvent crearEvent = new jpCreateEvent(mainMenu);
+        jpCreateEvent crearEvent = new jpCreateEvent(mainMenu, "");
         crearEvent.setSize(760, 606);
         crearEvent.setLocation(0, 0);
 
