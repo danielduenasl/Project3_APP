@@ -20,8 +20,8 @@ import javax.swing.JComponent;
 public class MainMenu extends javax.swing.JFrame {
 
     private jpMainMenu MainM;
-    private jpAlumnos alumnos;
-    private jpCalificaciones calif;
+    private jpEvents alumnos;
+    private jpPersons calif;
 
     
     /**
@@ -32,8 +32,8 @@ public class MainMenu extends javax.swing.JFrame {
         
         setBackground(new Color(0, 0, 0, 0));
         MainM = new jpMainMenu();
-        alumnos = new jpAlumnos(this);
-        calif = new jpCalificaciones(this);
+        alumnos = new jpEvents(this);
+        calif = new jpPersons(this);
 
         
         jpMenu2.addEventMenuSelected(new EventMenuSelected() {

@@ -4,6 +4,7 @@
  */
 package forms;
 
+import frames.Login;
 import java.awt.BorderLayout;
 import java.awt.Color;
 
@@ -13,11 +14,14 @@ import java.awt.Color;
  */
 public class jpCreateUser extends javax.swing.JPanel {
 
+    private Login loog;
     /**
      * Creates new form jpCreateUser
      */
-    public jpCreateUser() {
+    public jpCreateUser(Login login) {
         initComponents();
+        
+        loog = login;
     }
 
     /**
@@ -39,6 +43,7 @@ public class jpCreateUser extends javax.swing.JPanel {
         jlPassC = new javax.swing.JLabel();
         jpBtn = new javax.swing.JPanel();
         jlogin = new javax.swing.JLabel();
+        jlPass1 = new javax.swing.JLabel();
 
         setMinimumSize(new java.awt.Dimension(532, 566));
         setPreferredSize(new java.awt.Dimension(532, 566));
@@ -108,6 +113,17 @@ public class jpCreateUser extends javax.swing.JPanel {
         });
         jpBtn.add(jlogin, java.awt.BorderLayout.CENTER);
 
+        jlPass1.setFont(new java.awt.Font("Roboto", 1, 10)); // NOI18N
+        jlPass1.setForeground(new java.awt.Color(204, 204, 204));
+        jlPass1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlPass1.setText("If you already have an account, please Login. ");
+        jlPass1.setCursor(new java.awt.Cursor(java.awt.Cursor.HAND_CURSOR));
+        jlPass1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlPass1MouseClicked(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -126,7 +142,8 @@ public class jpCreateUser extends javax.swing.JPanel {
                             .addComponent(jlPass, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtpassword, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addComponent(jlPassC, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtpassword1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
+                            .addComponent(txtpassword1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(jlPass1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addGap(81, 81, 81)))
                 .addGap(76, 76, 76))
         );
@@ -137,7 +154,7 @@ public class jpCreateUser extends javax.swing.JPanel {
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(65, 65, 65)
                 .addComponent(jlUser, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 8, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlPass, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -147,7 +164,9 @@ public class jpCreateUser extends javax.swing.JPanel {
                 .addComponent(jlPassC, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtpassword1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(28, 28, 28)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(jlPass1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(70, 70, 70))
         );
@@ -183,11 +202,33 @@ public class jpCreateUser extends javax.swing.JPanel {
 
     }//GEN-LAST:event_jloginKeyPressed
 
+    private void jlPass1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlPass1MouseClicked
+
+        jpLogin logIN = new jpLogin(loog);
+        logIN.setSize(600, 566);
+        logIN.setLocation(0, 0);
+
+        jpContentLogin contentLogin = new jpContentLogin();
+        contentLogin.removeAll();
+        contentLogin.add(loog.jpHeaderBar, BorderLayout.NORTH);
+        contentLogin.add(logIN, BorderLayout.CENTER);
+        contentLogin.revalidate();
+        contentLogin.repaint();
+
+        loog.jpContent.removeAll();
+        loog.jpContent.add(contentLogin, BorderLayout.CENTER);
+        loog.jpContent.revalidate();
+        loog.jpContent.repaint();
+
+        jpBtn.setBackground(new Color (255,51,153));
+    }//GEN-LAST:event_jlPass1MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel jlPass;
+    private javax.swing.JLabel jlPass1;
     private javax.swing.JLabel jlPassC;
     private javax.swing.JLabel jlUser;
     private javax.swing.JLabel jlogin;
