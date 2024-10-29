@@ -106,8 +106,8 @@ public class jpMainMenu extends javax.swing.JPanel {
         jlbbSh6.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         jlbbSh6.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/cabina-de-dj.png"))); // NOI18N
 
-        jLabel2.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
-        jLabel2.setText("Crea una parranda");
+        jLabel2.setFont(new java.awt.Font("Tw Cen MT Condensed Extra Bold", 0, 18)); // NOI18N
+        jLabel2.setText("Crea un evento de manera profesional y endeudate con nosotros!");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);

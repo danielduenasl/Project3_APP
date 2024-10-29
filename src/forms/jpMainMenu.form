@@ -240,9 +240,9 @@
                 <Component class="javax.swing.JLabel" name="jLabel2">
                   <Properties>
                     <Property name="font" type="java.awt.Font" editor="org.netbeans.beaninfo.editors.FontEditor">
-                      <Font name="Segoe UI" size="18" style="0"/>
+                      <Font name="Tw Cen MT Condensed Extra Bold" size="18" style="0"/>
                     </Property>
-                    <Property name="text" type="java.lang.String" value="Crea una parranda"/>
+                    <Property name="text" type="java.lang.String" value="Crea un evento de manera profesional y endeudate con nosotros!"/>
                   </Properties>
                 </Component>
               </SubComponents>
