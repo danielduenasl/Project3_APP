@@ -37,31 +37,43 @@ public class jpCreateEvent extends javax.swing.JPanel {
         ImageIcon party = new ImageIcon(getClass().getResource("/images/cabina-de-dj.png"));
         
         if (opcn.equals("BabyShower")){
+            cbxEvnt.setSelectedIndex(0);
             jlTipoEvent.setIcon(bbshow);
             jlTipoEvent.setHorizontalAlignment(CENTER);
             jlTipoEvent.setVerticalAlignment(CENTER);
         } else if (opcn.equals("Cumpleaños")){
+            cbxEvnt.setSelectedIndex(1);
             jlTipoEvent.setIcon(cumple);
             jlTipoEvent.setHorizontalAlignment(CENTER);
             jlTipoEvent.setVerticalAlignment(CENTER);
         } else if (opcn.equals("Quinceaños")){
+            cbxEvnt.setSelectedIndex(2);
             jlTipoEvent.setIcon(quince);
             jlTipoEvent.setHorizontalAlignment(CENTER);
             jlTipoEvent.setVerticalAlignment(CENTER);
         } else if (opcn.equals("Graduacion")){
+            cbxEvnt.setSelectedIndex(3);
             jlTipoEvent.setIcon(gradua);
             jlTipoEvent.setHorizontalAlignment(CENTER);
             jlTipoEvent.setVerticalAlignment(CENTER);
         } else if (opcn.equals("Boda")){
+            cbxEvnt.setSelectedIndex(4);
             jlTipoEvent.setIcon(wedding);
             jlTipoEvent.setHorizontalAlignment(CENTER);
             jlTipoEvent.setVerticalAlignment(CENTER);
         }else if (opcn.equals("Convivio")){
+            cbxEvnt.setSelectedIndex(5);
             jlTipoEvent.setIcon(convv);
             jlTipoEvent.setHorizontalAlignment(CENTER);
             jlTipoEvent.setVerticalAlignment(CENTER);
         }else if (opcn.equals("Fiesta")){
+            cbxEvnt.setSelectedIndex(6);
             jlTipoEvent.setIcon(party);
+            jlTipoEvent.setHorizontalAlignment(CENTER);
+            jlTipoEvent.setVerticalAlignment(CENTER);
+        } else {
+            cbxEvnt.setSelectedIndex(0);
+            jlTipoEvent.setIcon(bbshow);
             jlTipoEvent.setHorizontalAlignment(CENTER);
             jlTipoEvent.setVerticalAlignment(CENTER);
         }
