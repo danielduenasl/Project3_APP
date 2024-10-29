@@ -7,6 +7,7 @@ package forms;
 import frames.Login;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -15,6 +16,9 @@ import java.awt.Color;
 public class jpCreateUser extends javax.swing.JPanel {
 
     private Login loog;
+    private String userName;
+    private String password;
+    private String confirmPass;
     /**
      * Creates new form jpCreateUser
      */
@@ -152,9 +156,9 @@ public class jpCreateUser extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(100, 100, 100)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 70, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(65, 65, 65)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 49, Short.MAX_VALUE)
                 .addComponent(jlUser, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtUser, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jlPass, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -164,11 +168,11 @@ public class jpCreateUser extends javax.swing.JPanel {
                 .addComponent(jlPassC, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(txtpassword1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jlPass1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jpBtn, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(70, 70, 70))
+                .addGap(76, 76, 76))
         );
 
         add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -178,16 +182,35 @@ public class jpCreateUser extends javax.swing.JPanel {
 
     }//GEN-LAST:event_txtUserKeyPressed
 
-    private void txtpasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpasswordKeyPressed
-
-    }//GEN-LAST:event_txtpasswordKeyPressed
-
     private void txtpassword1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpassword1KeyPressed
         // TODO add your handling code here:
     }//GEN-LAST:event_txtpassword1KeyPressed
 
     private void jloginMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jloginMouseClicked
+        userName = txtUser.getText();
+        password = String.valueOf(txtpassword.getPassword());
+        confirmPass = String.valueOf(txtpassword1.getPassword());
         
+        
+        JOptionPane.showMessageDialog(null, "El usuario se ha creado con exito.", "Mensaje", JOptionPane.PLAIN_MESSAGE);
+        
+        jpLogin logIN = new jpLogin(loog);
+        logIN.setSize(600, 566);
+        logIN.setLocation(0, 0);
+
+        jpContentLogin contentLogin = new jpContentLogin();
+        contentLogin.removeAll();
+        contentLogin.add(loog.jpHeaderBar, BorderLayout.NORTH);
+        contentLogin.add(logIN, BorderLayout.CENTER);
+        contentLogin.revalidate();
+        contentLogin.repaint();
+
+        loog.jpContent.removeAll();
+        loog.jpContent.add(contentLogin, BorderLayout.CENTER);
+        loog.jpContent.revalidate();
+        loog.jpContent.repaint();
+
+        jpBtn.setBackground(new Color (255,51,153));
     }//GEN-LAST:event_jloginMouseClicked
 
     private void jloginMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jloginMouseEntered
@@ -222,6 +245,10 @@ public class jpCreateUser extends javax.swing.JPanel {
 
         jpBtn.setBackground(new Color (255,51,153));
     }//GEN-LAST:event_jlPass1MouseClicked
+
+    private void txtpasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpasswordKeyPressed
+
+    }//GEN-LAST:event_txtpasswordKeyPressed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
