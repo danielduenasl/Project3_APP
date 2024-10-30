@@ -152,7 +152,7 @@ public class jpMainMenu extends javax.swing.JPanel {
             }
         });
 
-        jLabel2.setFont(new java.awt.Font("Arial Black", 0, 14)); // NOI18N
+        jLabel2.setFont(new java.awt.Font("New Athletic M54", 0, 14)); // NOI18N
         jLabel2.setText("Crea el evento que desees de manera sencilla!");
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
