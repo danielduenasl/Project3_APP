@@ -235,14 +235,17 @@ public class jpCreateUser extends javax.swing.JPanel {
                     JOptionPane.showMessageDialog(null, "El usuario se ha creado con exito.", "Mensaje", JOptionPane.PLAIN_MESSAGE); 
                 } else {
                     System.out.println("No se pudo deserializar la respuesta JSON.");
-                    JOptionPane.showMessageDialog(null, "Error cuando se intento crear un usuario.", "Error", JOptionPane.ERROR_MESSAGE);
+                    JOptionPane.showMessageDialog(null, "El usuario ya existe, intente con uno diferente.", "Error", JOptionPane.ERROR_MESSAGE);
                 }
   
             }
             else {
-                JOptionPane.showMessageDialog(null, "Los datos estan vacios, intente de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden, intente de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
             }
             
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Los campos estan vacios, intente de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
         }
         
     }//GEN-LAST:event_jloginMouseClicked
