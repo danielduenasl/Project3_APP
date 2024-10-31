@@ -87,7 +87,7 @@ public class jpInfoEvent extends javax.swing.JPanel {
         jlUser.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jlUser.setText("NOMBRE DEL EVENTO");
 
-        txtNombre.setToolTipText("Ingrese su usuario");
+        txtNombre.setToolTipText("");
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtNombreKeyPressed(evt);

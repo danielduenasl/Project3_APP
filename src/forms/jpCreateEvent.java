@@ -147,7 +147,7 @@ public class jpCreateEvent extends javax.swing.JPanel {
         jlTipoEvent.setMinimumSize(new java.awt.Dimension(100, 100));
         jlTipoEvent.setPreferredSize(new java.awt.Dimension(100, 100));
 
-        txtNombre.setToolTipText("Ingrese su usuario");
+        txtNombre.setToolTipText("");
         txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
                 txtNombreKeyPressed(evt);

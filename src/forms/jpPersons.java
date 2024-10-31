@@ -7,6 +7,7 @@ package forms;
 import data.Score;
 import data.Student;
 import frames.MainMenu;
+import java.awt.BorderLayout;
 import java.awt.Color;
 import java.util.List;
 import javax.swing.table.DefaultTableModel;
@@ -24,6 +25,7 @@ public class jpPersons extends javax.swing.JPanel {
     public jpPersons(MainMenu mainM) {
         initComponents();
         
+        mainMenu = mainM;
 
     }
 
@@ -136,7 +138,21 @@ public class jpPersons extends javax.swing.JPanel {
     
     
     private void jlBtnInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlBtnInfoMouseClicked
-        Student student = null;
+        jpCreatePersons createPersons = new jpCreatePersons();
+        createPersons.setSize(760, 606);
+        createPersons.setLocation(0, 0);
+
+        jpContentMain contentMain = new jpContentMain();
+        contentMain.removeAll();
+        contentMain.add(mainMenu.jpBarHeader, BorderLayout.NORTH);
+        contentMain.add(createPersons, BorderLayout.CENTER);
+        contentMain.revalidate();
+        contentMain.repaint();
+
+        mainMenu.jpContent.removeAll();
+        mainMenu.jpContent.add(contentMain, BorderLayout.CENTER);
+        mainMenu.jpContent.revalidate();
+        mainMenu.jpContent.repaint();
 
     }//GEN-LAST:event_jlBtnInfoMouseClicked
 
