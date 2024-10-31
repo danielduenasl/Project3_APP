@@ -9,7 +9,10 @@ import data.Student;
 import frames.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -27,10 +30,32 @@ public class jpEvents extends javax.swing.JPanel {
     public jpEvents(MainMenu mainM) {
         initComponents();
         this.mainMenu = mainM;
-     
+        
+        tablaEvents.setButtonActionListener(new ActionListener() {
+        @Override
+            public void actionPerformed(ActionEvent e) {
+                
+                //JOptionPane.showMessageDialog(null, "Esta es una acción personalizada para el botón en la tabla.");
+                jpInfoEvent infoEvent = new jpInfoEvent();
+                infoEvent.setSize(760, 606);
+                infoEvent.setLocation(0, 0);
+
+                jpContentMain contentMain = new jpContentMain();
+                contentMain.removeAll();
+                contentMain.add(mainMenu.jpBarHeader, BorderLayout.NORTH);
+                contentMain.add(infoEvent, BorderLayout.CENTER);
+                contentMain.revalidate();
+                contentMain.repaint();
+
+                mainMenu.jpContent.removeAll();
+                mainMenu.jpContent.add(contentMain, BorderLayout.CENTER);
+                mainMenu.jpContent.revalidate();
+                mainMenu.jpContent.repaint();
+            
+            }
+        });
        
     }
-    
 
     /**
      * This method is called from within the constructor to initialize the form.
@@ -46,7 +71,7 @@ public class jpEvents extends javax.swing.JPanel {
         jpBtnInfo = new javax.swing.JPanel();
         jlBtnInfo = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        customTableWithStyledButton1 = new models.CustomTableWithStyledButton();
+        tablaEvents = new models.CustomTableWithStyledButton();
 
         setMinimumSize(new java.awt.Dimension(760, 606));
         setLayout(new java.awt.BorderLayout());
@@ -78,7 +103,7 @@ public class jpEvents extends javax.swing.JPanel {
         });
         jpBtnInfo.add(jlBtnInfo, java.awt.BorderLayout.CENTER);
 
-        jScrollPane1.setViewportView(customTableWithStyledButton1);
+        jScrollPane1.setViewportView(tablaEvents);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -100,8 +125,8 @@ public class jpEvents extends javax.swing.JPanel {
                 .addGap(37, 37, 37)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 78, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(18, 18, 18)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 377, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 32, Short.MAX_VALUE)
+                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 384, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 25, Short.MAX_VALUE)
                 .addComponent(jpBtnInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(19, 19, 19))
         );
@@ -142,11 +167,11 @@ public class jpEvents extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private models.CustomTableWithStyledButton customTableWithStyledButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JLabel jlBtnInfo;
     private javax.swing.JPanel jpBtnInfo;
+    private models.CustomTableWithStyledButton tablaEvents;
     // End of variables declaration//GEN-END:variables
 }

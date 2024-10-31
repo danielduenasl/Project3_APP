@@ -20,6 +20,12 @@ public class jpInfoEvent extends javax.swing.JPanel {
      */
     public jpInfoEvent() {
         initComponents();
+        
+        ImageIcon bbshow = new ImageIcon(getClass().getResource("/images/baby-shower.png"));
+        
+        jlTipoEvent.setIcon(bbshow);
+        jlTipoEvent.setHorizontalAlignment(CENTER);
+        jlTipoEvent.setVerticalAlignment(CENTER);
     }
 
     /**

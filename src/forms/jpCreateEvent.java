@@ -335,21 +335,7 @@ public class jpCreateEvent extends javax.swing.JPanel {
         }
         //horaEvent = (LocalTime) timeFormatter.parse(txtHora.getText());
         
-        jpInfoEvent infoEvent = new jpInfoEvent();
-        infoEvent.setSize(760, 606);
-        infoEvent.setLocation(0, 0);
-
-        jpContentMain contentMain = new jpContentMain();
-        contentMain.removeAll();
-        contentMain.add(mainMenu.jpBarHeader, BorderLayout.NORTH);
-        contentMain.add(infoEvent, BorderLayout.CENTER);
-        contentMain.revalidate();
-        contentMain.repaint();
         
-        mainMenu.jpContent.removeAll();
-        mainMenu.jpContent.add(contentMain, BorderLayout.CENTER);
-        mainMenu.jpContent.revalidate();
-        mainMenu.jpContent.repaint();
         
     }//GEN-LAST:event_jlBtnInfoMouseClicked
 

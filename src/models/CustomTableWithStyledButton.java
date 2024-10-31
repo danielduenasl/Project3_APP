@@ -8,7 +8,7 @@ package models;
  *
  * @author PC
  */
-import forms.jpInfoEvent;
+
 import javax.swing.*;
 import javax.swing.table.*;
 import java.awt.*;
@@ -17,6 +17,7 @@ import java.awt.event.ActionListener;
 
 public class CustomTableWithStyledButton extends JTable {
     private JTable table;
+    private ActionListener customActionListener; // ActionListener personalizado
 
     public CustomTableWithStyledButton() {
         // Configuración inicial con más columnas y datos de ejemplo
@@ -26,7 +27,7 @@ public class CustomTableWithStyledButton extends JTable {
                 {"Elemento 2", "Otra descripción", "5", "$50", "Ver Más"},
                 {"Elemento 3", "Más detalles", "3", "$100", "Ver Más"}
             },
-            new String[] {"Nombre", "Fecha", "Hora", "Ubcacion", "Informacion"}
+            new String[] {"Nombre", "Fecha", "Hora", "Ubicación", "Información"}
         ));
         
         initUI();
@@ -59,14 +60,10 @@ public class CustomTableWithStyledButton extends JTable {
             getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
         }
     }
-    
-    public void updateColumnData(int columnIndex, Object[] newData) {
-        DefaultTableModel model = (DefaultTableModel) table.getModel();
-        for (int i = 0; i < newData.length && i < model.getRowCount(); i++) {
-            if (columnIndex != model.getColumnCount() - 1) {
-                model.setValueAt(newData[i], i, columnIndex);
-            }
-        }
+
+    // Método para asignar el ActionListener personalizado
+    public void setButtonActionListener(ActionListener actionListener) {
+        this.customActionListener = actionListener;
     }
 
     private class ButtonRenderer extends JButton implements TableCellRenderer {
@@ -100,8 +97,15 @@ public class CustomTableWithStyledButton extends JTable {
             button.setBorderPainted(false);
             button.setFocusPainted(false);
             button.setFont(new Font("Arial", Font.BOLD, 12));
+
+            // Usar el ActionListener personalizado si está definido
             button.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
+                    if (customActionListener != null) {
+                        customActionListener.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "CustomAction"));
+                    } else {
+                        JOptionPane.showMessageDialog(button, "Acción para la fila " + (getEditingRow() + 1));
+                    }
                     fireEditingStopped();
                 }
             });
@@ -117,9 +121,6 @@ public class CustomTableWithStyledButton extends JTable {
 
         @Override
         public Object getCellEditorValue() {
-            if (isPushed) {
-                JOptionPane.showMessageDialog(button, "Acción para la fila " + (getEditingRow() + 1));
-            }
             isPushed = false;
             return label;
         }
