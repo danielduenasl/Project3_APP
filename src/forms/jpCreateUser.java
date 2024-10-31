@@ -19,6 +19,7 @@ public class jpCreateUser extends javax.swing.JPanel {
     private String userName;
     private String password;
     private String confirmPass;
+    private String URL;
     /**
      * Creates new form jpCreateUser
      */
@@ -197,7 +198,7 @@ public class jpCreateUser extends javax.swing.JPanel {
                 JOptionPane.showMessageDialog(null, "El usuario se ha creado con exito.", "Mensaje", JOptionPane.PLAIN_MESSAGE);           
             
                 //Validacion API de credenciales
-                jpLogin logIN = new jpLogin(loog);
+                jpLogin logIN = new jpLogin(loog, URL);
                 logIN.setSize(600, 566);
                 logIN.setLocation(0, 0);
 
@@ -237,7 +238,7 @@ public class jpCreateUser extends javax.swing.JPanel {
 
     private void jlPass1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlPass1MouseClicked
 
-        jpLogin logIN = new jpLogin(loog);
+        jpLogin logIN = new jpLogin(loog, URL);
         logIN.setSize(600, 566);
         logIN.setLocation(0, 0);
 

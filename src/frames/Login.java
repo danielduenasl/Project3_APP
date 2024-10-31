@@ -4,12 +4,14 @@
  */
 package frames;
 
+import data.JsonUtils;
 import forms.jpContentLogin;
 import forms.jpContentMain;
 import forms.jpLogin;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import javax.swing.JComponent;
+import project3.ConfigReader;
 
 /**
  *
@@ -19,16 +21,21 @@ public class Login extends javax.swing.JFrame {
 
     private jpLogin login;
     private jpContentLogin contentLogin;
+    private ConfigReader conf;
+    private String URL;
+    
     /**
      * Creates new form Login
      */
     public Login() {
         initComponents();
         
-        login = new jpLogin(this);
+        conf = new ConfigReader();
+        conf.readConfigFile("config.txt");        
+        URL = "http://" + conf.ip + ":" + conf.port;
+        login = new jpLogin(this, URL);
         contentLogin = new jpContentLogin();
-        
-        
+
         
         setForm(login);
         //menuLogin2.initMoving(this);

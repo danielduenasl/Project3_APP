@@ -4,13 +4,9 @@
  */
 package forms;
 
-import data.Score;
-import data.Student;
 import frames.MainMenu;
 import java.awt.BorderLayout;
 import java.awt.Color;
-import java.util.List;
-import javax.swing.table.DefaultTableModel;
 
 /**
  *
@@ -124,9 +120,6 @@ public class jpPersons extends javax.swing.JPanel {
     private void cbxGradoActionPerformed(java.awt.event.ActionEvent evt) {
 
         
-    }
-    
-    private void addRows(List<Student> students) {
     }
     
     public void ConsultarDatos(){    

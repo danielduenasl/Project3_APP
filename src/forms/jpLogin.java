@@ -4,6 +4,9 @@
  */
 package forms;
 
+import data.ApiClient;
+import data.JsonUtils;
+import data.cUsers;
 import frames.Login;
 import frames.MainMenu;
 import java.awt.BorderLayout;
@@ -19,13 +22,19 @@ public class jpLogin extends javax.swing.JPanel {
     private Login loog;
     private String userName;
     private String password;
+    private String URL;
+    private ApiClient API;
+    private JsonUtils JSON;
     /**
      * Creates new form jpLogin
      */
-    public jpLogin(Login login) {
+    public jpLogin(Login login, String URLapi) {
         initComponents();
         
+        API = new ApiClient();
         loog = login;
+        URL = URLapi;
+        JSON = new JsonUtils();
     }
 
     /**
@@ -168,12 +177,27 @@ public class jpLogin extends javax.swing.JPanel {
         password = String.valueOf(txtpassword.getPassword());
         
         if (!userName.isEmpty() && !password.isEmpty()){
-            MainMenu mainM = new MainMenu();
-            mainM.show();
-            loog.setVisible(false);
+            String Response = API.sendRequest(URL + "/Users/" + userName,"GET",null);
+            cUsers user = JsonUtils.fromJson(Response, cUsers.class);
+            if (user != null) {
+                System.out.println("Usuario: " + user);
+            } else {
+                System.out.println("No se pudo deserializar la respuesta JSON.");
+            }
+            
+            if (userName.equals(user.getUserName()) && password.equals(user.getPassword())){
+                MainMenu mainM = new MainMenu();
+                mainM.show();
+                loog.setVisible(false);
+            }
+            else {
+                JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos, intente de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
+
+            }
+            
         }
         else {
-            JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrectos, intente de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Los campos estan vacios, intente de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
 
         }
                

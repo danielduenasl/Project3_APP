@@ -6,12 +6,12 @@ package frames;
 
 
 import data.EventMenuSelected;
-import data.Student;
 import forms.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.util.List;
 import javax.swing.JComponent;
+import project3.ConfigReader;
 
 /**
  *
@@ -23,6 +23,7 @@ public class MainMenu extends javax.swing.JFrame {
     private jpEvents alumnos;
     private jpPersons calif;
     private jpCreateEvent cEvent;
+    private ConfigReader conf;
 
     
     /**
@@ -31,6 +32,8 @@ public class MainMenu extends javax.swing.JFrame {
     public MainMenu() {
         initComponents();
         
+        
+        conf = new ConfigReader();
         setBackground(new Color(0, 0, 0, 0));
         MainM = new jpMainMenu(this);
         alumnos = new jpEvents(this);
