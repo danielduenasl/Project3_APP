@@ -5,7 +5,17 @@
 package forms;
 
 import frames.MainMenu;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.util.Date;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
 import static javax.swing.SwingConstants.CENTER;
 
 /**
@@ -15,6 +25,11 @@ import static javax.swing.SwingConstants.CENTER;
 public class jpCreateEvent extends javax.swing.JPanel {
 
     private MainMenu mainMenu;
+    private String nombre;
+    private Date fechaEvent;
+    private LocalTime horaEvent;
+    private String Ubicacion;
+    
     /**
      * Creates new form jpCreateEvent
      */
@@ -25,6 +40,9 @@ public class jpCreateEvent extends javax.swing.JPanel {
         
         Eventoselec(opcion);
     }
+    
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    private DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
     
     private void Eventoselec(String opcn){
 
@@ -93,6 +111,16 @@ public class jpCreateEvent extends javax.swing.JPanel {
         cbxEvnt = new models.CustomComboBox();
         jLabel3 = new javax.swing.JLabel();
         jlTipoEvent = new javax.swing.JLabel();
+        txtNombre = new models.CustomTextField();
+        jlUser = new javax.swing.JLabel();
+        jlUser1 = new javax.swing.JLabel();
+        txtFecha = new models.CustomDateFieldFutureOnly();
+        jlUser2 = new javax.swing.JLabel();
+        txtHora = new models.CustomTimeField();
+        jlUser3 = new javax.swing.JLabel();
+        cbxUbi = new models.CustomComboBox();
+        jpBtnInfo = new javax.swing.JPanel();
+        jlBtnInfo = new javax.swing.JLabel();
 
         setMinimumSize(new java.awt.Dimension(762, 606));
         setLayout(new java.awt.BorderLayout());
@@ -119,6 +147,64 @@ public class jpCreateEvent extends javax.swing.JPanel {
         jlTipoEvent.setMinimumSize(new java.awt.Dimension(100, 100));
         jlTipoEvent.setPreferredSize(new java.awt.Dimension(100, 100));
 
+        txtNombre.setToolTipText("Ingrese su usuario");
+        txtNombre.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                txtNombreKeyPressed(evt);
+            }
+        });
+
+        jlUser.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        jlUser.setForeground(new java.awt.Color(0, 0, 0));
+        jlUser.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jlUser.setText("NOMBRE DEL EVENTO");
+
+        jlUser1.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        jlUser1.setForeground(new java.awt.Color(0, 0, 0));
+        jlUser1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
+        jlUser1.setText("UBICACION");
+
+        txtFecha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        jlUser2.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        jlUser2.setForeground(new java.awt.Color(0, 0, 0));
+        jlUser2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jlUser2.setText("FECHA DEL EVENTO");
+
+        txtHora.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+
+        jlUser3.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
+        jlUser3.setForeground(new java.awt.Color(0, 0, 0));
+        jlUser3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
+        jlUser3.setText("HORA DEL EVENTO");
+
+        cbxUbi.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cbxUbiActionPerformed(evt);
+            }
+        });
+
+        jpBtnInfo.setBackground(new java.awt.Color(222, 8, 163));
+        jpBtnInfo.setForeground(new java.awt.Color(255, 255, 255));
+        jpBtnInfo.setLayout(new java.awt.BorderLayout());
+
+        jlBtnInfo.setFont(new java.awt.Font("Roboto", 1, 12)); // NOI18N
+        jlBtnInfo.setForeground(new java.awt.Color(255, 255, 255));
+        jlBtnInfo.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        jlBtnInfo.setText("CREAR EVENTO");
+        jlBtnInfo.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jlBtnInfoMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                jlBtnInfoMouseEntered(evt);
+            }
+            public void mouseExited(java.awt.event.MouseEvent evt) {
+                jlBtnInfoMouseExited(evt);
+            }
+        });
+        jpBtnInfo.add(jlBtnInfo, java.awt.BorderLayout.CENTER);
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -126,16 +212,33 @@ public class jpCreateEvent extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(23, 23, 23)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addComponent(jlTipoEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(cbxEvnt, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
-                            .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-                        .addGap(29, 29, 29))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 718, Short.MAX_VALUE)
-                        .addGap(21, 21, 21))))
+                        .addGap(21, 21, 21))
+                    .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                    .addComponent(jlUser1, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                                    .addComponent(cbxUbi, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                                .addGap(320, 320, 320)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jlUser3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtHora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jpBtnInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addComponent(jlTipoEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 145, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jlUser, javax.swing.GroupLayout.DEFAULT_SIZE, 190, Short.MAX_VALUE)
+                                        .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)))
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                    .addComponent(cbxEvnt, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
+                                    .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(jlUser2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                        .addGap(29, 29, 29))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -149,7 +252,25 @@ public class jpCreateEvent extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(cbxEvnt, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jlTipoEvent, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(332, Short.MAX_VALUE))
+                .addGap(18, 18, 18)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlUser, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlUser2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addGap(26, 26, 26)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(jlUser1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(jlUser3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                    .addComponent(cbxUbi, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(txtHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(jpBtnInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(47, 47, 47))
         );
 
         add(jPanel1, java.awt.BorderLayout.CENTER);
@@ -197,12 +318,65 @@ public class jpCreateEvent extends javax.swing.JPanel {
         }
     }//GEN-LAST:event_cbxEvntActionPerformed
 
+    private void txtNombreKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombreKeyPressed
+
+    }//GEN-LAST:event_txtNombreKeyPressed
+
+    private void cbxUbiActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxUbiActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_cbxUbiActionPerformed
+
+    private void jlBtnInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlBtnInfoMouseClicked
+        nombre = txtNombre.getText();
+        try {
+            fechaEvent = dateFormat.parse(txtFecha.getText());
+        } catch (ParseException ex) {
+           // JOptionPane.showMessageDialog(null, "El formato de la fecha es incorrecto.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        //horaEvent = (LocalTime) timeFormatter.parse(txtHora.getText());
+        
+        jpInfoEvent infoEvent = new jpInfoEvent();
+        infoEvent.setSize(760, 606);
+        infoEvent.setLocation(0, 0);
+
+        jpContentMain contentMain = new jpContentMain();
+        contentMain.removeAll();
+        contentMain.add(mainMenu.jpBarHeader, BorderLayout.NORTH);
+        contentMain.add(infoEvent, BorderLayout.CENTER);
+        contentMain.revalidate();
+        contentMain.repaint();
+        
+        mainMenu.jpContent.removeAll();
+        mainMenu.jpContent.add(contentMain, BorderLayout.CENTER);
+        mainMenu.jpContent.revalidate();
+        mainMenu.jpContent.repaint();
+        
+    }//GEN-LAST:event_jlBtnInfoMouseClicked
+
+    private void jlBtnInfoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlBtnInfoMouseEntered
+        jpBtnInfo.setBackground(new Color (232, 50, 22));
+    }//GEN-LAST:event_jlBtnInfoMouseEntered
+
+    private void jlBtnInfoMouseExited(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlBtnInfoMouseExited
+        jpBtnInfo.setBackground(new Color (222, 8, 163));
+    }//GEN-LAST:event_jlBtnInfoMouseExited
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private models.CustomComboBox cbxEvnt;
+    private models.CustomComboBox cbxUbi;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
+    private javax.swing.JLabel jlBtnInfo;
     private javax.swing.JLabel jlTipoEvent;
+    private javax.swing.JLabel jlUser;
+    private javax.swing.JLabel jlUser1;
+    private javax.swing.JLabel jlUser2;
+    private javax.swing.JLabel jlUser3;
+    private javax.swing.JPanel jpBtnInfo;
+    private models.CustomDateFieldFutureOnly txtFecha;
+    private models.CustomTimeField txtHora;
+    private models.CustomTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }

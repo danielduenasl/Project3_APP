@@ -8,17 +8,16 @@ package models;
  *
  * @author PC
  */
-import forms.jpInfoEvent;
 import javax.swing.*;
 import javax.swing.table.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 
-public class CustomTableWithStyledButton extends JTable {
+public class CustomTableWithStyledButtonPerson extends JTable {
     private JTable table;
 
-    public CustomTableWithStyledButton() {
+    public CustomTableWithStyledButtonPerson() {
         // Configuración inicial con más columnas y datos de ejemplo
         setModel(new DefaultTableModel(
             new Object[][] {
@@ -26,7 +25,7 @@ public class CustomTableWithStyledButton extends JTable {
                 {"Elemento 2", "Otra descripción", "5", "$50", "Ver Más"},
                 {"Elemento 3", "Más detalles", "3", "$100", "Ver Más"}
             },
-            new String[] {"Nombre", "Fecha", "Hora", "Ubcacion", "Informacion"}
+            new String[] {"Nombre", "Descripción", "Cantidad", "Precio", "Acciones"}
         ));
         
         initUI();
@@ -48,7 +47,7 @@ public class CustomTableWithStyledButton extends JTable {
         header.setForeground(Color.WHITE);
 
         // Aplicar renderizador de botón en la última columna
-        TableColumn buttonColumn = getColumnModel().getColumn(4); // Columna de "Acciones"
+        TableColumn buttonColumn = getColumnModel().getColumn(getColumnCount()); // Columna de "Acciones"
         buttonColumn.setCellRenderer(new ButtonRenderer());
         buttonColumn.setCellEditor(new ButtonEditor(new JCheckBox()));
 

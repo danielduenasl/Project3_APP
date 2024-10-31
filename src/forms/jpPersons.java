@@ -74,6 +74,16 @@ public class jpPersons extends javax.swing.JPanel {
         });
         jpBtnInfo.add(jlBtnInfo, java.awt.BorderLayout.CENTER);
 
+        customTable1.setModel(new javax.swing.table.DefaultTableModel(
+            new Object [][] {
+                {"Chayanne", "Dueñas", "1", "M"},
+                {"2", "Elemento 2", "Otra descripción", "5"},
+                {"3", "Elemento 3", "Más detalles", "3"}
+            },
+            new String [] {
+                "Nombre", "Apellido", "Edad", "Genero"
+            }
+        ));
         jScrollPane1.setViewportView(customTable1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);

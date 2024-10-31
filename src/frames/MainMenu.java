@@ -22,6 +22,7 @@ public class MainMenu extends javax.swing.JFrame {
     private jpMainMenu MainM;
     private jpEvents alumnos;
     private jpPersons calif;
+    private jpCreateEvent cEvent;
 
     
     /**
@@ -34,6 +35,7 @@ public class MainMenu extends javax.swing.JFrame {
         MainM = new jpMainMenu(this);
         alumnos = new jpEvents(this);
         calif = new jpPersons(this);
+        cEvent = new jpCreateEvent(this,"");
 
         
         jpMenu2.addEventMenuSelected(new EventMenuSelected() {
@@ -45,6 +47,8 @@ public class MainMenu extends javax.swing.JFrame {
                     setForm(alumnos);
                 } else if (index == 4) {
                     setForm(calif);
+                } else if (index == 5) {
+                    setForm(cEvent);
                 }
               
             }
