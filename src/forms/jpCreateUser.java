@@ -4,6 +4,9 @@
  */
 package forms;
 
+import data.ApiClient;
+import data.JsonUtils;
+import data.cUsers;
 import frames.Login;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -20,13 +23,18 @@ public class jpCreateUser extends javax.swing.JPanel {
     private String password;
     private String confirmPass;
     private String URL;
+    private ApiClient API;
+    private JsonUtils JSON;
     /**
      * Creates new form jpCreateUser
      */
-    public jpCreateUser(Login login) {
+    public jpCreateUser(Login login, String URLapi) {
         initComponents();
         
+        API = new ApiClient();
         loog = login;
+        URL = URLapi;
+        JSON = new JsonUtils();
     }
 
     /**
@@ -194,30 +202,45 @@ public class jpCreateUser extends javax.swing.JPanel {
         
         if (!userName.isEmpty() && !password.isEmpty() && !confirmPass.isEmpty()){
             
-            if (password.equals(confirmPass)){                   
-                JOptionPane.showMessageDialog(null, "El usuario se ha creado con exito.", "Mensaje", JOptionPane.PLAIN_MESSAGE);           
-            
-                //Validacion API de credenciales
-                jpLogin logIN = new jpLogin(loog, URL);
-                logIN.setSize(600, 566);
-                logIN.setLocation(0, 0);
+            if (password.equals(confirmPass)){  
+                cUsers user = new cUsers();
+                user.setUserName(userName);
+                user.setPassword(password);
+                String JSONPeticion = user.toJSON();
+                
+                String Response = API.sendRequest(URL + "/Users","POST",JSONPeticion);
+                cUsers userC = JsonUtils.fromJson(Response, cUsers.class);
+                if (userC != null) {
+                    System.out.println("Usuario: " + user);
+                    
+                    //Validacion API de credenciales
+                    jpLogin logIN = new jpLogin(loog, URL);
+                    logIN.setSize(600, 566);
+                    logIN.setLocation(0, 0);
 
-                jpContentLogin contentLogin = new jpContentLogin();
-                contentLogin.removeAll();
-                contentLogin.add(loog.jpHeaderBar, BorderLayout.NORTH);
-                contentLogin.add(logIN, BorderLayout.CENTER);
-                contentLogin.revalidate();
-                contentLogin.repaint();
+                    jpContentLogin contentLogin = new jpContentLogin();
+                    contentLogin.removeAll();
+                    contentLogin.add(loog.jpHeaderBar, BorderLayout.NORTH);
+                    contentLogin.add(logIN, BorderLayout.CENTER);
+                    contentLogin.revalidate();
+                    contentLogin.repaint();
 
-                loog.jpContent.removeAll();
-                loog.jpContent.add(contentLogin, BorderLayout.CENTER);
-                loog.jpContent.revalidate();
-                loog.jpContent.repaint();
+                    loog.jpContent.removeAll();
+                    loog.jpContent.add(contentLogin, BorderLayout.CENTER);
+                    loog.jpContent.revalidate();
+                    loog.jpContent.repaint();
 
-                jpBtn.setBackground(new Color (255,51,153));
+                    jpBtn.setBackground(new Color (255,51,153));
+                    
+                    JOptionPane.showMessageDialog(null, "El usuario se ha creado con exito.", "Mensaje", JOptionPane.PLAIN_MESSAGE); 
+                } else {
+                    System.out.println("No se pudo deserializar la respuesta JSON.");
+                    JOptionPane.showMessageDialog(null, "Error cuando se intento crear un usuario.", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+  
             }
             else {
-                JOptionPane.showMessageDialog(null, "Las contraseñas no coinciden, verifique por favor.", "Error", JOptionPane.ERROR_MESSAGE);
+                JOptionPane.showMessageDialog(null, "Los datos estan vacios, intente de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
             }
             
         }

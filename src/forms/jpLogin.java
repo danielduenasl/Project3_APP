@@ -225,7 +225,7 @@ public class jpLogin extends javax.swing.JPanel {
 
     private void jlPass1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlPass1MouseClicked
        
-        jpCreateUser createUser = new jpCreateUser(loog);
+        jpCreateUser createUser = new jpCreateUser(loog, URL);
         createUser.setSize(600, 566);
         createUser.setLocation(0, 0);
         
