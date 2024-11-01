@@ -22,7 +22,7 @@ public class jpMainMenu extends javax.swing.JPanel {
     /**
      * Creates new form jpMainMenu
      */
-    public jpMainMenu(MainMenu mainM) {
+    public jpMainMenu(MainMenu mainM, String usuario) {
         initComponents();
         
         mainMenu = mainM;
@@ -30,11 +30,11 @@ public class jpMainMenu extends javax.swing.JPanel {
         LocalTime now = LocalTime.now();
         String saludo;
         if (now.isBefore(LocalTime.of(12, 0))) {
-            saludo = "BUENOS DIAS!";
+            saludo = "BUENOS DIAS " + usuario + "!";
         } else if (now.isBefore(LocalTime.of(18, 0))) {
-            saludo = "BUENAS TARDES!";
+            saludo = "BUENAS TARDES " + usuario + "!";
         } else {
-            saludo = "BUENAS NOCHES!";
+            saludo = "BUENAS NOCHES " + usuario + "!";
         }
         jlWelcome.setText(saludo);
     }

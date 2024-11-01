@@ -209,13 +209,6 @@ public class Login extends javax.swing.JFrame {
 
     }//GEN-LAST:event_jpHeaderBarMouseClicked
       
-    public void tryConnection(){
-
-            MainMenu MM = new MainMenu();
-            MM.show();
-            this.setVisible(false);
-
-    }
     
     /**
      * @param args the command line arguments

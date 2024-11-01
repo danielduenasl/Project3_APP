@@ -186,7 +186,7 @@ public class jpLogin extends javax.swing.JPanel {
             }
             
             if (userName.equals(user.getUserName()) && password.equals(user.getPassword())){
-                MainMenu mainM = new MainMenu();
+                MainMenu mainM = new MainMenu(user);
                 mainM.show();
                 loog.setVisible(false);
             }

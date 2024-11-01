@@ -14,14 +14,16 @@ import java.awt.Color;
  */
 public class jpPersons extends javax.swing.JPanel {
 
-    private MainMenu mainMenu; 
+    private MainMenu mainMenu;
+    private long idUser;
     /**
      * Creates new form jpCalificaciones
      */
-    public jpPersons(MainMenu mainM) {
+    public jpPersons(MainMenu mainM, long idusuario) {
         initComponents();
         
         mainMenu = mainM;
+        idUser = idusuario;
 
     }
 

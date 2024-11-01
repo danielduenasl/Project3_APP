@@ -6,6 +6,7 @@ package frames;
 
 
 import data.EventMenuSelected;
+import data.cUsers;
 import forms.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
@@ -20,24 +21,25 @@ import project3.ConfigReader;
 public class MainMenu extends javax.swing.JFrame {
 
     private jpMainMenu MainM;
-    private jpEvents alumnos;
-    private jpPersons calif;
+    private jpEvents eventos;
+    private jpPersons personas;
     private jpCreateEvent cEvent;
     private ConfigReader conf;
+    private cUsers user;
 
     
     /**
      * Creates new form MainMenu
      */
-    public MainMenu() {
+    public MainMenu(cUsers users) {
         initComponents();
-        
-        
+              
         conf = new ConfigReader();
+        user = users;
         setBackground(new Color(0, 0, 0, 0));
-        MainM = new jpMainMenu(this);
-        alumnos = new jpEvents(this);
-        calif = new jpPersons(this);
+        MainM = new jpMainMenu(this, user.getUserName());
+        eventos = new jpEvents(this);
+        personas = new jpPersons(this, user.getIdUsers());
         cEvent = new jpCreateEvent(this,"");
 
         
@@ -47,9 +49,9 @@ public class MainMenu extends javax.swing.JFrame {
                 if (index == 2) {
                     setForm(MainM);
                 } else if (index == 3) {
-                    setForm(alumnos);
+                    setForm(eventos);
                 } else if (index == 4) {
-                    setForm(calif);
+                    setForm(personas);
                 } else if (index == 5) {
                     setForm(cEvent);
                 }
@@ -66,7 +68,7 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
         //  set when system open start with home
-        setForm(new jpMainMenu(this));
+        setForm(new jpMainMenu(this, user.getUserName()));
         
     }
     
@@ -324,11 +326,11 @@ public class MainMenu extends javax.swing.JFrame {
         }
         //</editor-fold>
         //</editor-fold>
-
+        cUsers use = new cUsers(); 
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new MainMenu().setVisible(true);
+                new MainMenu(use).setVisible(true);
             }
         });
     }
