@@ -40,7 +40,6 @@ public class CustomTableWithStyledButton extends JTable {
             throw new IllegalStateException("tableModel no está inicializado.");
         }
         
-        // Limpiar los datos existentes antes de agregar nuevos
         tableModel.setRowCount(0);
 
         for (cEvents event : events) {

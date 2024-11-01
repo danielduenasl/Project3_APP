@@ -8,23 +8,26 @@ package models;
  *
  * @author PC
  */
+import data.cPersons;
 import javax.swing.*;
 import javax.swing.table.*;
 import java.awt.*;
+import java.util.List;
 
 public class CustomTable extends JTable {
 
+    private DefaultTableModel tableModel;
+    
     public CustomTable() {
         // Configuración inicial con columnas y datos de ejemplo sin botón
-        setModel(new DefaultTableModel(
+        tableModel = new DefaultTableModel(
             new Object[][] {
-                {"1", "Elemento 1", "Una descripción", "10", "$20"},
-                {"2", "Elemento 2", "Otra descripción", "5", "$50"},
-                {"3", "Elemento 3", "Más detalles", "3", "$100"}
+                {"--", "--", "--", "--", "--", "--"}
             },
-            new String[] {"ID", "Nombre", "Descripción", "Cantidad", "Precio"}
-        ));
+            new String[] {"Nombre", "Apellido", "Email", "Numero", "Edad", "Genero"}
+        );
         
+        setModel(tableModel);
         initUI();
     }
 
@@ -50,4 +53,26 @@ public class CustomTable extends JTable {
             getColumnModel().getColumn(i).setCellRenderer(centerRenderer);
         }
     }
+    
+    public void loadEventData(List<cPersons> persons) {
+        if (tableModel == null) {
+            throw new IllegalStateException("tableModel no está inicializado.");
+        }
+
+        tableModel.setRowCount(0);
+
+        for (cPersons person : persons) {
+            tableModel.addRow(new Object[]{
+                person.getName(),
+                person.getLastName(),
+                person.getEmail(),
+                person.getContacNumber(),
+                person.getAge(),
+                person.getGender()
+            });
+        }
+
+    }
+
+    
 }

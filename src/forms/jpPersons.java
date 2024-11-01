@@ -4,9 +4,15 @@
  */
 package forms;
 
+import com.google.gson.reflect.TypeToken;
+import data.ApiClient;
+import data.JsonUtils;
+import data.cEvents;
+import data.cPersons;
 import frames.MainMenu;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.util.List;
 
 /**
  *
@@ -17,6 +23,7 @@ public class jpPersons extends javax.swing.JPanel {
     private MainMenu mainMenu;
     private long idUser;
     private String URL;
+    private ApiClient API;
     /**
      * Creates new form jpCalificaciones
      */
@@ -26,6 +33,14 @@ public class jpPersons extends javax.swing.JPanel {
         mainMenu = mainM;
         idUser = idusuario;
         URL = URLapi;
+        API = new ApiClient();
+        
+        String response = ApiClient.sendRequest(URL + "/Users/" + idUser + "/Persons", "GET", null);
+        List<cPersons> persons = JsonUtils.fromJson(response, new TypeToken<List<cPersons>>() {}.getType());
+        
+        customTable1.loadEventData(persons);
+        customTable1.revalidate();
+        customTable1.repaint();
 
     }
 
@@ -42,7 +57,7 @@ public class jpPersons extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jpBtnInfo = new javax.swing.JPanel();
         jlBtnInfo = new javax.swing.JLabel();
-        jScrollPane1 = new javax.swing.JScrollPane();
+        jScrollPane2 = new javax.swing.JScrollPane();
         customTable1 = new models.CustomTable();
 
         setMinimumSize(new java.awt.Dimension(760, 606));
@@ -76,17 +91,7 @@ public class jpPersons extends javax.swing.JPanel {
         });
         jpBtnInfo.add(jlBtnInfo, java.awt.BorderLayout.CENTER);
 
-        customTable1.setModel(new javax.swing.table.DefaultTableModel(
-            new Object [][] {
-                {"Chayanne", "Dueñas", "1", "M"},
-                {"2", "Elemento 2", "Otra descripción", "5"},
-                {"3", "Elemento 3", "Más detalles", "3"}
-            },
-            new String [] {
-                "Nombre", "Apellido", "Edad", "Genero"
-            }
-        ));
-        jScrollPane1.setViewportView(customTable1);
+        jScrollPane2.setViewportView(customTable1);
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -95,14 +100,13 @@ public class jpPersons extends javax.swing.JPanel {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(0, 0, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 725, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(535, 535, 535)
                         .addComponent(jpBtnInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 209, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                        .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 725, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 725, Short.MAX_VALUE)
+                            .addComponent(jScrollPane2))))
                 .addGap(16, 16, 16))
         );
         jPanel1Layout.setVerticalGroup(
@@ -110,9 +114,9 @@ public class jpPersons extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(32, 32, 32)
                 .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 58, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 67, Short.MAX_VALUE)
-                .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 376, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 31, Short.MAX_VALUE)
+                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 396, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
                 .addComponent(jpBtnInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(16, 16, 16))
         );
@@ -120,14 +124,7 @@ public class jpPersons extends javax.swing.JPanel {
         add(jPanel1, java.awt.BorderLayout.CENTER);
     }// </editor-fold>//GEN-END:initComponents
 
-    
-    private void cbxGradoActionPerformed(java.awt.event.ActionEvent evt) {
-
-        
-    }
    
-    
-    
     private void jlBtnInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlBtnInfoMouseClicked
         jpCreatePersons createPersons = new jpCreatePersons(URL, idUser);
         createPersons.setSize(760, 606);
@@ -160,7 +157,7 @@ public class jpPersons extends javax.swing.JPanel {
     private models.CustomTable customTable1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JLabel jlBtnInfo;
     private javax.swing.JPanel jpBtnInfo;
     // End of variables declaration//GEN-END:variables
