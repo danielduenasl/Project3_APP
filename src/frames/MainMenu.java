@@ -50,13 +50,13 @@ public class MainMenu extends javax.swing.JFrame {
             @Override
             public void selected(int index) {
                 if (index == 2) {
-                    setForm(MainM);
+                    setForm(new jpMainMenu(MainMenu.this, user.getUserName(), URL, user.getIdUsers()));
                 } else if (index == 3) {
-                    setForm(eventos);
+                    setForm(new jpEvents(MainMenu.this, URL, user.getIdUsers()));
                 } else if (index == 4) {
-                    setForm(personas);
+                    setForm(new jpPersons(MainMenu.this, user.getIdUsers(), URL));
                 } else if (index == 5) {
-                    setForm(cEvent);
+                    setForm(new jpCreateEvent(MainMenu.this, "" , URL, user.getIdUsers()));
                 }
               
             }

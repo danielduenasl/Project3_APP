@@ -6,6 +6,9 @@ package data;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
+import com.google.gson.reflect.TypeToken;
+
+import java.lang.reflect.Type;
 import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.time.LocalTime;
@@ -19,6 +22,10 @@ public class JsonUtils {
 
     public static <T> T fromJson(String json, Class<T> clazz) {
         return gson.fromJson(json, clazz);
+    }
+
+    public static <T> T fromJson(String json, Type type) {
+        return gson.fromJson(json, type);
     }
 
     public static String toJson(Object src) {

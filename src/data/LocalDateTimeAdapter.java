@@ -16,15 +16,21 @@ import java.time.format.DateTimeFormatter;
  * @author Daniel
  */
 public class LocalDateTimeAdapter extends TypeAdapter<LocalDateTime> {
-    private static final DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+    private static final DateTimeFormatter formatterWithMillis = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss.SSSSSS");
+    private static final DateTimeFormatter formatterWithoutMillis = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
 
     @Override
     public void write(JsonWriter out, LocalDateTime value) throws IOException {
-        out.value(value.format(formatter));
+        out.value(value.format(formatterWithoutMillis));
     }
 
     @Override
     public LocalDateTime read(JsonReader in) throws IOException {
-        return LocalDateTime.parse(in.nextString(), formatter);
+        String date = in.nextString();
+        try {
+            return LocalDateTime.parse(date, formatterWithMillis); // Intento con milisegundos
+        } catch (Exception e) {
+            return LocalDateTime.parse(date, formatterWithoutMillis); // Intento sin milisegundos
+        }
     }
 }

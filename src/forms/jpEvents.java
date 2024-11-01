@@ -5,11 +5,17 @@
 package forms;
 
 
+import com.google.gson.reflect.TypeToken;
+import data.ApiClient;
+import data.JsonUtils;
+import data.cEvents;
+import data.cPersons;
 import frames.*;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.List;
 
 /**
  *
@@ -20,6 +26,7 @@ public class jpEvents extends javax.swing.JPanel {
     private MainMenu mainMenu; 
     private String URL;
     private long idUser;
+    private ApiClient API;
 
     
     /**
@@ -30,6 +37,12 @@ public class jpEvents extends javax.swing.JPanel {
         this.mainMenu = mainM;
         URL = URLapi;
         idUser = idusuario;
+        API = new ApiClient();
+        
+        String response = ApiClient.sendRequest(URL + "/Users/" + idUser + "/Events", "GET", null);
+        List<cEvents> events = JsonUtils.fromJson(response, new TypeToken<List<cEvents>>() {}.getType());
+        
+        tablaEvents.loadEventData(events);
         
         tablaEvents.setButtonActionListener(new ActionListener() {
         @Override
@@ -56,6 +69,9 @@ public class jpEvents extends javax.swing.JPanel {
         });
        
     }
+    
+    
+    
 
     /**
      * This method is called from within the constructor to initialize the form.

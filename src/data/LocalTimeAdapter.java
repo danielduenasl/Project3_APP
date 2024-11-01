@@ -20,11 +20,20 @@ public class LocalTimeAdapter extends TypeAdapter<LocalTime> {
 
     @Override
     public void write(JsonWriter out, LocalTime value) throws IOException {
-        out.value(value.format(formatter));
+        if (value == null) {
+            out.nullValue();
+        } else {
+            out.value(value.format(formatter));
+        }
     }
 
     @Override
     public LocalTime read(JsonReader in) throws IOException {
-        return LocalTime.parse(in.nextString(), formatter);
+        if (in.peek() == com.google.gson.stream.JsonToken.NULL) { // Verificar si el valor es NULL
+            in.nextNull();
+            return null;
+        } else {
+            return LocalTime.parse(in.nextString(), formatter);
+        }
     }
 }
