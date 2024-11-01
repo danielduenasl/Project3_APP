@@ -26,6 +26,7 @@ public class MainMenu extends javax.swing.JFrame {
     private jpCreateEvent cEvent;
     private ConfigReader conf;
     private cUsers user;
+    private String URL;
 
     
     /**
@@ -35,12 +36,14 @@ public class MainMenu extends javax.swing.JFrame {
         initComponents();
               
         conf = new ConfigReader();
+        conf.readConfigFile("config.txt");        
+        URL = "http://" + conf.ip + ":" + conf.port;
         user = users;
         setBackground(new Color(0, 0, 0, 0));
-        MainM = new jpMainMenu(this, user.getUserName());
-        eventos = new jpEvents(this);
-        personas = new jpPersons(this, user.getIdUsers());
-        cEvent = new jpCreateEvent(this,"");
+        MainM = new jpMainMenu(this, user.getUserName(), URL, user.getIdUsers());
+        eventos = new jpEvents(this, URL, user.getIdUsers());
+        personas = new jpPersons(this, user.getIdUsers(), URL);
+        cEvent = new jpCreateEvent(this, "" , URL, user.getIdUsers());
 
         
         jpMenu2.addEventMenuSelected(new EventMenuSelected() {
@@ -68,7 +71,7 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
         //  set when system open start with home
-        setForm(new jpMainMenu(this, user.getUserName()));
+        setForm(new jpMainMenu(this, user.getUserName(), URL, user.getIdUsers()));
         
     }
     

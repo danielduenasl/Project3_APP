@@ -12,11 +12,15 @@ import java.awt.Color;
  */
 public class jpCreatePersons extends javax.swing.JPanel {
 
+    private String URL;
     /**
      * Creates new form jpCreatePersons
      */
-    public jpCreatePersons() {
+    public jpCreatePersons(String URLapi) {
         initComponents();
+        
+        URL = URLapi;
+        
     }
 
     /**
@@ -154,7 +158,7 @@ public class jpCreatePersons extends javax.swing.JPanel {
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(19, 19, 19)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 718, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 780, Short.MAX_VALUE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(jlUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)

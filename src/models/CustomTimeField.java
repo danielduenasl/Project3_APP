@@ -15,21 +15,22 @@ import java.awt.event.FocusAdapter;
 import java.awt.event.FocusEvent;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+import java.time.format.DateTimeParseException;
 
 public class CustomTimeField extends JTextField {
     private final SimpleDateFormat timeFormat = new SimpleDateFormat("HH:mm");
+    private final DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
 
     public CustomTimeField() {
-        // Configuración inicial
+
         setPreferredSize(new Dimension(100, 30));
         setFont(new Font("Arial", Font.BOLD, 14));
-//        setForeground(new Color(0x06e7ec));
-//        setBackground(Color.WHITE);
         setBackground(Color.LIGHT_GRAY);
         setForeground(Color.DARK_GRAY);
         setBorder(new EmptyBorder(5, 5, 5, 5));
 
-        // Validación de tiempo
         addFocusListener(new FocusAdapter() {
             @Override
             public void focusLost(FocusEvent e) {
@@ -38,7 +39,6 @@ public class CustomTimeField extends JTextField {
         });
     }
 
-    // Método para validar el formato de tiempo
     private void validateTime() {
         String input = getText().trim();
         if (!input.isEmpty()) {
@@ -46,10 +46,22 @@ public class CustomTimeField extends JTextField {
                 timeFormat.setLenient(false);
                 timeFormat.parse(input);
             } catch (ParseException e) {
-                // Si el formato es incorrecto, muestra un mensaje y limpia el campo
+
                 JOptionPane.showMessageDialog(this, "Por favor, ingresa un tiempo en formato HH:mm", "Formato Incorrecto", JOptionPane.ERROR_MESSAGE);
                 setText("");
             }
         }
+    }
+
+    public LocalTime obtenerHoraComoLocalTime() {
+        String timeText = getText().trim();
+        if (!timeText.isEmpty()) {
+            try {
+                return LocalTime.parse(timeText, timeFormatter); // Convierte el texto a LocalTime
+            } catch (DateTimeParseException e) {
+                e.printStackTrace();
+            }
+        }
+        return null;
     }
 }

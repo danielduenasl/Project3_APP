@@ -29,19 +29,23 @@ public class jpCreateEvent extends javax.swing.JPanel {
     private Date fechaEvent;
     private LocalTime horaEvent;
     private String Ubicacion;
+    private String URL;
+    private long idUser;
     
     /**
      * Creates new form jpCreateEvent
      */
-    public jpCreateEvent(MainMenu mainM, String opcion) {
+    public jpCreateEvent(MainMenu mainM, String opcion, String URLapi, long idusuario) {
         initComponents();
         
         this.mainMenu = mainM;
+        URL = URLapi;
+        idUser = idusuario;
         
         Eventoselec(opcion);
     }
     
-    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+    public SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     private DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
     
     private void Eventoselec(String opcn){
@@ -307,11 +311,11 @@ public class jpCreateEvent extends javax.swing.JPanel {
             jlTipoEvent.setIcon(wedding);
             jlTipoEvent.setHorizontalAlignment(CENTER);
             jlTipoEvent.setVerticalAlignment(CENTER);
-        }else if (evntoselec.equals("Convivio")){
+        } else if (evntoselec.equals("Convivio")){
             jlTipoEvent.setIcon(convv);
             jlTipoEvent.setHorizontalAlignment(CENTER);
             jlTipoEvent.setVerticalAlignment(CENTER);
-        }else if (evntoselec.equals("Fiesta")){
+        } else if (evntoselec.equals("Fiesta")){
             jlTipoEvent.setIcon(party);
             jlTipoEvent.setHorizontalAlignment(CENTER);
             jlTipoEvent.setVerticalAlignment(CENTER);
@@ -328,17 +332,23 @@ public class jpCreateEvent extends javax.swing.JPanel {
 
     private void jlBtnInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlBtnInfoMouseClicked
         nombre = txtNombre.getText();
-        try {
-            fechaEvent = dateFormat.parse(txtFecha.getText());
-        } catch (ParseException ex) {
-           // JOptionPane.showMessageDialog(null, "El formato de la fecha es incorrecto.", "Error", JOptionPane.ERROR_MESSAGE);
-        }
-        //horaEvent = (LocalTime) timeFormatter.parse(txtHora.getText());
+        fechaEvent = obtenerFechaComoDate();
+        horaEvent = txtHora.obtenerHoraComoLocalTime();
         
         
         
     }//GEN-LAST:event_jlBtnInfoMouseClicked
 
+    public Date obtenerFechaComoDate() {
+        String fechaTexto = txtFecha.getText();
+        try {
+            return txtFecha.dateFormat.parse(fechaTexto);
+        } catch (ParseException e) {
+            e.printStackTrace();
+            return null;
+        }
+    }
+    
     private void jlBtnInfoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlBtnInfoMouseEntered
         jpBtnInfo.setBackground(new Color (232, 50, 22));
     }//GEN-LAST:event_jlBtnInfoMouseEntered

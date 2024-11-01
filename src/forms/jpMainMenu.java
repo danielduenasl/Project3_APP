@@ -19,13 +19,17 @@ import java.time.LocalTime;
 public class jpMainMenu extends javax.swing.JPanel {
 
     private MainMenu mainMenu;
+    private String URL;
+    private long idUser;
     /**
      * Creates new form jpMainMenu
      */
-    public jpMainMenu(MainMenu mainM, String usuario) {
+    public jpMainMenu(MainMenu mainM, String usuario, String URLapi, long idusuario) {
         initComponents();
         
         mainMenu = mainM;
+        URL = URLapi;
+        idUser = idusuario;
 
         LocalTime now = LocalTime.now();
         String saludo;
@@ -262,7 +266,7 @@ public class jpMainMenu extends javax.swing.JPanel {
     }//GEN-LAST:event_jlbbSh6MouseClicked
 
     public void CreaEventos(String opcion){
-        jpCreateEvent crearEvent = new jpCreateEvent(mainMenu, opcion);
+        jpCreateEvent crearEvent = new jpCreateEvent(mainMenu, opcion, URL, idUser);
         crearEvent.setSize(760, 606);
         crearEvent.setLocation(0, 0);
 

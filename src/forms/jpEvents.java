@@ -17,22 +17,26 @@ import java.awt.event.ActionListener;
  */
 public class jpEvents extends javax.swing.JPanel {
 
-    private MainMenu mainMenu;  
+    private MainMenu mainMenu; 
+    private String URL;
+    private long idUser;
 
     
     /**
      * Creates new form jpAlumnos
      */
-    public jpEvents(MainMenu mainM) {
+    public jpEvents(MainMenu mainM, String URLapi, long idusuario) {
         initComponents();
         this.mainMenu = mainM;
+        URL = URLapi;
+        idUser = idusuario;
         
         tablaEvents.setButtonActionListener(new ActionListener() {
         @Override
             public void actionPerformed(ActionEvent e) {
                 
                 //JOptionPane.showMessageDialog(null, "Esta es una acción personalizada para el botón en la tabla.");
-                jpInfoEvent infoEvent = new jpInfoEvent();
+                jpInfoEvent infoEvent = new jpInfoEvent(URL, idUser);
                 infoEvent.setSize(760, 606);
                 infoEvent.setLocation(0, 0);
 
@@ -143,7 +147,7 @@ public class jpEvents extends javax.swing.JPanel {
     }//GEN-LAST:event_jlBtnInfoMouseExited
 
     private void jlBtnInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlBtnInfoMouseClicked
-        jpCreateEvent crearEvent = new jpCreateEvent(mainMenu, "");
+        jpCreateEvent crearEvent = new jpCreateEvent(mainMenu, "", URL, idUser);
         crearEvent.setSize(760, 606);
         crearEvent.setLocation(0, 0);
 

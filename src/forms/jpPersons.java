@@ -16,10 +16,11 @@ public class jpPersons extends javax.swing.JPanel {
 
     private MainMenu mainMenu;
     private long idUser;
+    private String URL;
     /**
      * Creates new form jpCalificaciones
      */
-    public jpPersons(MainMenu mainM, long idusuario) {
+    public jpPersons(MainMenu mainM, long idusuario, String URLapi) {
         initComponents();
         
         mainMenu = mainM;
@@ -123,17 +124,11 @@ public class jpPersons extends javax.swing.JPanel {
 
         
     }
-    
-    public void ConsultarDatos(){    
-        int i = 0;
-        while (i < 6){
-            i++;
-        }
-    }
+   
     
     
     private void jlBtnInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlBtnInfoMouseClicked
-        jpCreatePersons createPersons = new jpCreatePersons();
+        jpCreatePersons createPersons = new jpCreatePersons(URL);
         createPersons.setSize(760, 606);
         createPersons.setLocation(0, 0);
 

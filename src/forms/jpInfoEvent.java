@@ -15,12 +15,16 @@ import static javax.swing.SwingConstants.CENTER;
  */
 public class jpInfoEvent extends javax.swing.JPanel {
 
+    private String URL;
+    private long idUser;
     /**
      * Creates new form jpInfoEvent
      */
-    public jpInfoEvent() {
+    public jpInfoEvent(String URLapi, long idusuario) {
         initComponents();
         
+        URL = URLapi;
+        idUser = idusuario;
         ImageIcon bbshow = new ImageIcon(getClass().getResource("/images/baby-shower.png"));
         
         jlTipoEvent.setIcon(bbshow);
