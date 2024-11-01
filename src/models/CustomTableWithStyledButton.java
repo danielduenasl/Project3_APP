@@ -71,7 +71,7 @@ public class CustomTableWithStyledButton extends JTable {
         // Aplicar renderizador de botón en la última columna
         TableColumn buttonColumn = getColumnModel().getColumn(4); // Columna de "Acciones"
         buttonColumn.setCellRenderer(new ButtonRenderer());
-        buttonColumn.setCellEditor(new ButtonEditor(new JCheckBox()));
+        buttonColumn.setCellEditor(new ButtonEditor(new JCheckBox(), this));
 
         // Centrar texto en todas las columnas excepto la del botón
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
@@ -107,9 +107,11 @@ public class CustomTableWithStyledButton extends JTable {
         private JButton button;
         private String label;
         private boolean isPushed;
+        private JTable table;
 
-        public ButtonEditor(JCheckBox checkBox) {
+        public ButtonEditor(JCheckBox checkBox, JTable table) {
             super(checkBox);
+            this.table = table;
             button = new JButton();
             button.setOpaque(true);
             button.setBackground(new Color(0x06e7ec));
@@ -118,13 +120,14 @@ public class CustomTableWithStyledButton extends JTable {
             button.setFocusPainted(false);
             button.setFont(new Font("Arial", Font.BOLD, 12));
 
-            // Usar el ActionListener personalizado si está definido
             button.addActionListener(new ActionListener() {
                 public void actionPerformed(ActionEvent e) {
                     if (customActionListener != null) {
-                        customActionListener.actionPerformed(new ActionEvent(this, ActionEvent.ACTION_PERFORMED, "CustomAction"));
+                        ActionEvent actionEvent = new ActionEvent(button, ActionEvent.ACTION_PERFORMED, label);
+                        customActionListener.actionPerformed(actionEvent);
                     } else {
-                        JOptionPane.showMessageDialog(button, "Acción para la fila " + (getEditingRow() + 1));
+                        int row = table.getSelectedRow();
+                        JOptionPane.showMessageDialog(button, "Acción para la fila " + (row + 1));
                     }
                     fireEditingStopped();
                 }

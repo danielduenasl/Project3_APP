@@ -60,17 +60,17 @@
                                       <Group type="102" attributes="0">
                                           <Component id="cbxEvnt1" min="-2" pref="190" max="-2" attributes="0"/>
                                           <EmptySpace max="-2" attributes="0"/>
-                                          <Component id="cbxEvnt2" min="-2" pref="190" max="-2" attributes="0"/>
+                                          <Component id="cbxEstado" min="-2" pref="190" max="-2" attributes="0"/>
                                       </Group>
                                   </Group>
                                   <EmptySpace max="32767" attributes="0"/>
                                   <Group type="103" groupAlignment="1" max="-2" attributes="0">
                                       <Component id="cbxEvnt" alignment="1" max="32767" attributes="0"/>
                                       <Component id="jLabel3" alignment="1" max="32767" attributes="0"/>
-                                      <Component id="customDateFieldFutureOnly1" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="txtFecha" alignment="1" max="32767" attributes="0"/>
                                       <Component id="jlUser2" alignment="0" min="-2" pref="200" max="-2" attributes="0"/>
                                       <Component id="jlUser3" alignment="0" max="32767" attributes="0"/>
-                                      <Component id="customTimeField1" alignment="1" max="32767" attributes="0"/>
+                                      <Component id="txtHora" alignment="1" max="32767" attributes="0"/>
                                   </Group>
                               </Group>
                               <Group type="102" alignment="0" attributes="0">
@@ -107,7 +107,7 @@
                           <EmptySpace max="-2" attributes="0"/>
                           <Component id="jlUser2" min="-2" pref="22" max="-2" attributes="0"/>
                           <EmptySpace max="-2" attributes="0"/>
-                          <Component id="customDateFieldFutureOnly1" min="-2" max="-2" attributes="0"/>
+                          <Component id="txtFecha" min="-2" max="-2" attributes="0"/>
                       </Group>
                   </Group>
                   <EmptySpace max="-2" attributes="0"/>
@@ -121,8 +121,8 @@
                   <EmptySpace max="-2" attributes="0"/>
                   <Group type="103" groupAlignment="0" attributes="0">
                       <Group type="103" groupAlignment="3" attributes="0">
-                          <Component id="customTimeField1" alignment="3" min="-2" max="-2" attributes="0"/>
-                          <Component id="cbxEvnt2" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
+                          <Component id="txtHora" alignment="3" min="-2" max="-2" attributes="0"/>
+                          <Component id="cbxEstado" alignment="3" min="-2" pref="28" max="-2" attributes="0"/>
                       </Group>
                       <Component id="cbxEvnt1" min="-2" pref="28" max="-2" attributes="0"/>
                   </Group>
@@ -222,7 +222,7 @@
             <Property name="text" type="java.lang.String" value="FECHA DEL EVENTO"/>
           </Properties>
         </Component>
-        <Component class="models.CustomDateFieldFutureOnly" name="customDateFieldFutureOnly1">
+        <Component class="models.CustomDateFieldFutureOnly" name="txtFecha">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
           </Properties>
@@ -261,7 +261,7 @@
             <Property name="text" type="java.lang.String" value="HORA DEL EVENTO"/>
           </Properties>
         </Component>
-        <Component class="models.CustomTimeField" name="customTimeField1">
+        <Component class="models.CustomTimeField" name="txtHora">
           <Properties>
             <Property name="horizontalAlignment" type="int" value="0"/>
           </Properties>
@@ -314,14 +314,14 @@
             </Component>
           </SubComponents>
         </Container>
-        <Component class="models.CustomComboBox" name="cbxEvnt2">
+        <Component class="models.CustomComboBox" name="cbxEstado">
           <Properties>
             <Property name="model" type="javax.swing.ComboBoxModel" editor="org.netbeans.modules.form.editors2.ComboBoxModelEditor">
               <StringArray count="0"/>
             </Property>
           </Properties>
           <Events>
-            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbxEvnt2ActionPerformed"/>
+            <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="cbxEstadoActionPerformed"/>
           </Events>
         </Component>
         <Container class="javax.swing.JScrollPane" name="jScrollPane1">

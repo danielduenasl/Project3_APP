@@ -4,6 +4,7 @@
  */
 package forms;
 
+import data.cEvents;
 import frames.AddPersons;
 import java.awt.Color;
 import javax.swing.ImageIcon;
@@ -17,19 +18,28 @@ public class jpInfoEvent extends javax.swing.JPanel {
 
     private String URL;
     private long idUser;
+    private cEvents eventoA;
     /**
      * Creates new form jpInfoEvent
      */
-    public jpInfoEvent(String URLapi, long idusuario) {
+    public jpInfoEvent(String URLapi, long idusuario, cEvents evtns) {
         initComponents();
         
-        URL = URLapi;
-        idUser = idusuario;
         ImageIcon bbshow = new ImageIcon(getClass().getResource("/images/baby-shower.png"));
         
         jlTipoEvent.setIcon(bbshow);
         jlTipoEvent.setHorizontalAlignment(CENTER);
         jlTipoEvent.setVerticalAlignment(CENTER);
+        
+        eventoA = evtns;
+        
+        txtNombre.setText(eventoA.getEventName());
+        txtFecha.setText(eventoA.getDateEvent());
+        txtHora.setText(String.valueOf(eventoA.getTimEvent()));
+        
+        URL = URLapi;
+        idUser = idusuario;
+        Eventoselec(eventoA.getTipoEvent());
     }
 
     /**
@@ -49,15 +59,15 @@ public class jpInfoEvent extends javax.swing.JPanel {
         jlUser = new javax.swing.JLabel();
         txtNombre = new models.CustomTextField();
         jlUser2 = new javax.swing.JLabel();
-        customDateFieldFutureOnly1 = new models.CustomDateFieldFutureOnly();
+        txtFecha = new models.CustomDateFieldFutureOnly();
         jlUser1 = new javax.swing.JLabel();
         cbxEvnt1 = new models.CustomComboBox();
         jlUser3 = new javax.swing.JLabel();
-        customTimeField1 = new models.CustomTimeField();
+        txtHora = new models.CustomTimeField();
         jlUser4 = new javax.swing.JLabel();
         jpBtnInfo = new javax.swing.JPanel();
         jlBtnInfo = new javax.swing.JLabel();
-        cbxEvnt2 = new models.CustomComboBox();
+        cbxEstado = new models.CustomComboBox();
         jScrollPane1 = new javax.swing.JScrollPane();
         customTable1 = new models.CustomTable();
 
@@ -103,7 +113,7 @@ public class jpInfoEvent extends javax.swing.JPanel {
         jlUser2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jlUser2.setText("FECHA DEL EVENTO");
 
-        customDateFieldFutureOnly1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtFecha.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jlUser1.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jlUser1.setForeground(new java.awt.Color(0, 0, 0));
@@ -121,7 +131,7 @@ public class jpInfoEvent extends javax.swing.JPanel {
         jlUser3.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jlUser3.setText("HORA DEL EVENTO");
 
-        customTimeField1.setHorizontalAlignment(javax.swing.JTextField.CENTER);
+        txtHora.setHorizontalAlignment(javax.swing.JTextField.CENTER);
 
         jlUser4.setFont(new java.awt.Font("Roboto", 1, 18)); // NOI18N
         jlUser4.setForeground(new java.awt.Color(0, 0, 0));
@@ -149,9 +159,9 @@ public class jpInfoEvent extends javax.swing.JPanel {
         });
         jpBtnInfo.add(jlBtnInfo, java.awt.BorderLayout.CENTER);
 
-        cbxEvnt2.addActionListener(new java.awt.event.ActionListener() {
+        cbxEstado.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxEvnt2ActionPerformed(evt);
+                cbxEstadoActionPerformed(evt);
             }
         });
 
@@ -182,15 +192,15 @@ public class jpInfoEvent extends javax.swing.JPanel {
                                     .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(cbxEvnt1, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(cbxEvnt2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(cbxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)))
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
                                     .addComponent(cbxEvnt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(customDateFieldFutureOnly1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                    .addComponent(txtFecha, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                                     .addComponent(jlUser2, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.PREFERRED_SIZE, 200, javax.swing.GroupLayout.PREFERRED_SIZE)
                                     .addComponent(jlUser3, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                    .addComponent(customTimeField1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                    .addComponent(txtHora, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
                             .addGroup(javax.swing.GroupLayout.Alignment.LEADING, jPanel1Layout.createSequentialGroup()
                                 .addComponent(jpBtnInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                                 .addGap(0, 0, Short.MAX_VALUE))
@@ -217,7 +227,7 @@ public class jpInfoEvent extends javax.swing.JPanel {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jlUser2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(customDateFieldFutureOnly1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtFecha, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jlUser3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -227,8 +237,8 @@ public class jpInfoEvent extends javax.swing.JPanel {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(customTimeField1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(cbxEvnt2, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtHora, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(cbxEstado, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(cbxEvnt1, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jScrollPane1, javax.swing.GroupLayout.DEFAULT_SIZE, 240, Short.MAX_VALUE)
@@ -303,18 +313,69 @@ public class jpInfoEvent extends javax.swing.JPanel {
         jpBtnInfo.setBackground(new Color (222, 8, 163));
     }//GEN-LAST:event_jlBtnInfoMouseExited
 
-    private void cbxEvnt2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxEvnt2ActionPerformed
+    private void cbxEstadoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxEstadoActionPerformed
         // TODO add your handling code here:
-    }//GEN-LAST:event_cbxEvnt2ActionPerformed
+    }//GEN-LAST:event_cbxEstadoActionPerformed
 
+    
+    private void Eventoselec(String opcn){
+
+        ImageIcon bbshow = new ImageIcon(getClass().getResource("/images/baby-shower.png"));
+        ImageIcon cumple = new ImageIcon(getClass().getResource("/images/happy-birthday.png"));
+        ImageIcon quince = new ImageIcon(getClass().getResource("/images/quinceanera.png"));
+        ImageIcon gradua = new ImageIcon(getClass().getResource("/images/graduacion.png"));
+        ImageIcon wedding = new ImageIcon(getClass().getResource("/images/recien-casados.png"));
+        ImageIcon convv = new ImageIcon(getClass().getResource("/images/copa-de-champan.png"));
+        ImageIcon party = new ImageIcon(getClass().getResource("/images/cabina-de-dj.png"));
+        
+        if (opcn.equals("BabyShower")){
+            cbxEvnt.setSelectedIndex(0);
+            jlTipoEvent.setIcon(bbshow);
+            jlTipoEvent.setHorizontalAlignment(CENTER);
+            jlTipoEvent.setVerticalAlignment(CENTER);
+        } else if (opcn.equals("Cumpleaños")){
+            cbxEvnt.setSelectedIndex(1);
+            jlTipoEvent.setIcon(cumple);
+            jlTipoEvent.setHorizontalAlignment(CENTER);
+            jlTipoEvent.setVerticalAlignment(CENTER);
+        } else if (opcn.equals("Quinceaños")){
+            cbxEvnt.setSelectedIndex(2);
+            jlTipoEvent.setIcon(quince);
+            jlTipoEvent.setHorizontalAlignment(CENTER);
+            jlTipoEvent.setVerticalAlignment(CENTER);
+        } else if (opcn.equals("Graduacion")){
+            cbxEvnt.setSelectedIndex(3);
+            jlTipoEvent.setIcon(gradua);
+            jlTipoEvent.setHorizontalAlignment(CENTER);
+            jlTipoEvent.setVerticalAlignment(CENTER);
+        } else if (opcn.equals("Boda")){
+            cbxEvnt.setSelectedIndex(4);
+            jlTipoEvent.setIcon(wedding);
+            jlTipoEvent.setHorizontalAlignment(CENTER);
+            jlTipoEvent.setVerticalAlignment(CENTER);
+        }else if (opcn.equals("Convivio")){
+            cbxEvnt.setSelectedIndex(5);
+            jlTipoEvent.setIcon(convv);
+            jlTipoEvent.setHorizontalAlignment(CENTER);
+            jlTipoEvent.setVerticalAlignment(CENTER);
+        }else if (opcn.equals("Fiesta")){
+            cbxEvnt.setSelectedIndex(6);
+            jlTipoEvent.setIcon(party);
+            jlTipoEvent.setHorizontalAlignment(CENTER);
+            jlTipoEvent.setVerticalAlignment(CENTER);
+        } else {
+            cbxEvnt.setSelectedIndex(0);
+            jlTipoEvent.setIcon(bbshow);
+            jlTipoEvent.setHorizontalAlignment(CENTER);
+            jlTipoEvent.setVerticalAlignment(CENTER);
+        }
+    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private models.CustomComboBox cbxEstado;
     private models.CustomComboBox cbxEvnt;
     private models.CustomComboBox cbxEvnt1;
-    private models.CustomComboBox cbxEvnt2;
-    private models.CustomDateFieldFutureOnly customDateFieldFutureOnly1;
     private models.CustomTable customTable1;
-    private models.CustomTimeField customTimeField1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
@@ -327,6 +388,8 @@ public class jpInfoEvent extends javax.swing.JPanel {
     private javax.swing.JLabel jlUser3;
     private javax.swing.JLabel jlUser4;
     private javax.swing.JPanel jpBtnInfo;
+    private models.CustomDateFieldFutureOnly txtFecha;
+    private models.CustomTimeField txtHora;
     private models.CustomTextField txtNombre;
     // End of variables declaration//GEN-END:variables
 }

@@ -16,6 +16,10 @@ import java.awt.Color;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.stream.Collectors;
+import javax.swing.JButton;
+import javax.swing.JTable;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -46,31 +50,49 @@ public class jpEvents extends javax.swing.JPanel {
         
         tablaEvents.setButtonActionListener(new ActionListener() {
         @Override
-            public void actionPerformed(ActionEvent e) {
-                
-                //JOptionPane.showMessageDialog(null, "Esta es una acción personalizada para el botón en la tabla.");
-                jpInfoEvent infoEvent = new jpInfoEvent(URL, idUser);
-                infoEvent.setSize(760, 606);
-                infoEvent.setLocation(0, 0);
+        public void actionPerformed(ActionEvent e) {
+            JButton button = (JButton) e.getSource();
+            JTable table = (JTable) SwingUtilities.getAncestorOfClass(JTable.class, button);
 
-                jpContentMain contentMain = new jpContentMain();
-                contentMain.removeAll();
-                contentMain.add(mainMenu.jpBarHeader, BorderLayout.NORTH);
-                contentMain.add(infoEvent, BorderLayout.CENTER);
-                contentMain.revalidate();
-                contentMain.repaint();
+            if (table != null) {
+                int row = table.convertRowIndexToModel(table.getSelectedRow());
 
-                mainMenu.jpContent.removeAll();
-                mainMenu.jpContent.add(contentMain, BorderLayout.CENTER);
-                mainMenu.jpContent.revalidate();
-                mainMenu.jpContent.repaint();
-            
+                if (row != -1) {
+                    String FechaEvent = (String) tablaEvents.getValueAt(row, 1);
+                    long idLocation = (long) tablaEvents.getValueAt(row, 3);
+                    
+                    cEvents eventInfo = new cEvents();
+                    eventInfo = findEventByDateAndLocation(events, FechaEvent, idLocation);
+
+                    jpInfoEvent infoEvent = new jpInfoEvent(URL, idUser, eventInfo);
+                    infoEvent.setSize(760, 606);
+                    infoEvent.setLocation(0, 0);
+
+                    jpContentMain contentMain = new jpContentMain();
+                    contentMain.removeAll();
+                    contentMain.add(mainMenu.jpBarHeader, BorderLayout.NORTH);
+                    contentMain.add(infoEvent, BorderLayout.CENTER);
+                    contentMain.revalidate();
+                    contentMain.repaint();
+
+                    mainMenu.jpContent.removeAll();
+                    mainMenu.jpContent.add(contentMain, BorderLayout.CENTER);
+                    mainMenu.jpContent.revalidate();
+                    mainMenu.jpContent.repaint();
+                }
             }
-        });
+        }
+    });
+
        
     }
     
-    
+    public static cEvents findEventByDateAndLocation(List<cEvents> events, String dateEvent, long idLocation) {
+        return events.stream()
+                .filter(event -> event.getDateEvent().equals(dateEvent) && event.getIdLocation() == idLocation)
+                .findFirst() 
+                .orElse(null); 
+    }
     
 
     /**
