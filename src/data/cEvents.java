@@ -17,11 +17,12 @@ public class cEvents {
     private long idEvent;
     private String eventName;
     private LocalDateTime eventCreated;
-    private Date dateEvent;
-    private LocalTime timEvent;
+    private String dateEvent;
+    private LocalTime timeEvent;
     private String status;
     private long idLocation;
     private long idUser;
+    private String tipoEvent;
 
     public long getIdEvent() {
         return idEvent;
@@ -47,20 +48,20 @@ public class cEvents {
         this.eventCreated = eventCreated;
     }
 
-    public Date getDateEvent() {
+    public String getDateEvent() {
         return dateEvent;
     }
 
-    public void setDateEvent(Date dateEvent) {
+    public void setDateEvent(String dateEvent) {
         this.dateEvent = dateEvent;
     }
 
     public LocalTime getTimEvent() {
-        return timEvent;
+        return timeEvent;
     }
 
-    public void setTimEvent(LocalTime timEvent) {
-        this.timEvent = timEvent;
+    public void setTimEvent(LocalTime timeEvent) {
+        this.timeEvent = timeEvent;
     }
 
     public String getStatus() {
@@ -90,9 +91,19 @@ public class cEvents {
     public cEvents() {
     }
 
+    public String getTipoEvent() {
+        return tipoEvent;
+    }
+
+    public void setTipoEvent(String tipoEvent) {
+        this.tipoEvent = tipoEvent;
+    }
+    
+    
+
     @Override
     public String toString() {
-        return "cEvents{" + "idEvent=" + idEvent + ", eventName=" + eventName + ", eventCreated=" + eventCreated + ", dateEvent=" + dateEvent + ", timEvent=" + timEvent + ", status=" + status + ", idLocation=" + idLocation + ", idUser=" + idUser + '}';
+        return "cEvents{" + "idEvent=" + idEvent + ", eventName=" + eventName + ", eventCreated=" + eventCreated + ", dateEvent=" + dateEvent + ", timeEvent=" + timeEvent + ", status=" + status + ", idLocation=" + idLocation + ", idUser=" + idUser + '}';
     }
     
     public String toJSON() {
@@ -100,8 +111,9 @@ public class cEvents {
             + "\"eventName\": \"" + eventName + "\", "
             + "\"eventCreated\": \"" + eventCreated + "\", "
             + "\"dateEvent\": \"" + dateEvent + "\", "
-            + "\"timEvent\": \"" + timEvent + "\", "
+            + "\"timeEvent\": \"" + timeEvent + "\", "
             + "\"status\": \"" + status + "\", "
+            + "\"tipoEvent\": \"" + tipoEvent + "\", "
             + "\"idLocation\": " + idLocation + ", "
             + "\"idUser\": " + idUser
             + "}";

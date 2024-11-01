@@ -5,23 +5,23 @@
 package data;
 
 import com.google.gson.Gson;
-import com.google.gson.JsonSyntaxException;
-
-/**
- *
- * @author Daniel
- */
+import com.google.gson.GsonBuilder;
+import java.time.LocalDate;
+import java.time.LocalDateTime;
+import java.time.LocalTime;
 
 public class JsonUtils {
-
-    private static final Gson gson = new Gson();
+    private static final Gson gson = new GsonBuilder()
+            .registerTypeAdapter(LocalDateTime.class, new LocalDateTimeAdapter())
+            .registerTypeAdapter(LocalDate.class, new LocalDateAdapter())
+            .registerTypeAdapter(LocalTime.class, new LocalTimeAdapter())
+            .create();
 
     public static <T> T fromJson(String json, Class<T> clazz) {
-        try {
-            return gson.fromJson(json, clazz);
-        } catch (JsonSyntaxException e) {
-            System.out.println("Error en la deserialización del JSON: " + e.getMessage());
-            return null;
-        }
+        return gson.fromJson(json, clazz);
+    }
+
+    public static String toJson(Object src) {
+        return gson.toJson(src);
     }
 }

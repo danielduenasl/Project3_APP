@@ -25,6 +25,7 @@ public class jpPersons extends javax.swing.JPanel {
         
         mainMenu = mainM;
         idUser = idusuario;
+        URL = URLapi;
 
     }
 
@@ -128,7 +129,7 @@ public class jpPersons extends javax.swing.JPanel {
     
     
     private void jlBtnInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlBtnInfoMouseClicked
-        jpCreatePersons createPersons = new jpCreatePersons(URL);
+        jpCreatePersons createPersons = new jpCreatePersons(URL, idUser);
         createPersons.setSize(760, 606);
         createPersons.setLocation(0, 0);
 

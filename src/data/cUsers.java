@@ -10,16 +10,16 @@ package data;
  */
 public class cUsers {
     
-    private long idUsers;
+    private long idUser;
     private String userName;
     private String password;
 
     public long getIdUsers() {
-        return idUsers;
+        return idUser;
     }
 
-    public void setIdUsers(long idUsers) {
-        this.idUsers = idUsers;
+    public void setIdUsers(long idUser) {
+        this.idUser = idUser;
     }
 
     public String getUserName() {
@@ -43,7 +43,7 @@ public class cUsers {
 
     @Override
     public String toString() {
-        return "cUsers{" + "idUsers=" + idUsers + ", userName=" + userName + ", password=" + password + '}';
+        return "cUsers{" + "idUser=" + idUser + ", userName=" + userName + ", password=" + password + '}';
     }
     
     public String toJSON() {

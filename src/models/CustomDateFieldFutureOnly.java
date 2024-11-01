@@ -39,6 +39,12 @@ public class CustomDateFieldFutureOnly extends JTextField {
     private void validateFutureDate() {
         String input = getText().trim();
         if (!input.isEmpty()) {
+            // Verificación inicial del formato con una expresión regular
+            if (!input.matches("\\d{4}-\\d{2}-\\d{2}")) {
+                JOptionPane.showMessageDialog(this, "Por favor, ingresa una fecha en formato yyyy-MM-dd", "Formato Incorrecto", JOptionPane.ERROR_MESSAGE);
+                setText("");
+                return;
+            }
             try {
                 Date date = dateFormat.parse(input);
                 Date today = new Date();
@@ -47,7 +53,7 @@ public class CustomDateFieldFutureOnly extends JTextField {
                     JOptionPane.showMessageDialog(this, "Solo se permiten fechas futuras.", "Fecha Inválida", JOptionPane.ERROR_MESSAGE);
                     setText("");
                 } else {
-                    setText(dateFormat.format(date)); // Formato yyyy-MM-dd
+                    setText(dateFormat.format(date)); // Asegura que el formato sea yyyy-MM-dd
                 }
             } catch (ParseException e) {
                 JOptionPane.showMessageDialog(this, "Por favor, ingresa una fecha en formato yyyy-MM-dd", "Formato Incorrecto", JOptionPane.ERROR_MESSAGE);

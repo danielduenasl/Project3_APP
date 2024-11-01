@@ -4,7 +4,13 @@
  */
 package forms;
 
+import data.ApiClient;
+import data.JsonUtils;
+import data.cPersons;
+import data.cUsers;
+import java.awt.BorderLayout;
 import java.awt.Color;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -13,13 +19,23 @@ import java.awt.Color;
 public class jpCreatePersons extends javax.swing.JPanel {
 
     private String URL;
+    private String Nombre;
+    private String Apellido;
+    private int edad;
+    private String numero;
+    private String Correo;
+    private String Genero;
+    private long idUser;
+    private ApiClient API;
+    
     /**
      * Creates new form jpCreatePersons
      */
-    public jpCreatePersons(String URLapi) {
+    public jpCreatePersons(String URLapi, long idusuario) {
         initComponents();
         
         URL = URLapi;
+        idUser = idusuario;
         
     }
 
@@ -37,15 +53,15 @@ public class jpCreatePersons extends javax.swing.JPanel {
         jlUser = new javax.swing.JLabel();
         txtNombre = new models.CustomTextField();
         jlUser1 = new javax.swing.JLabel();
-        txtNombre1 = new models.CustomTextField();
+        txtEmail = new models.CustomTextField();
         jlUser3 = new javax.swing.JLabel();
-        txtNombre2 = new models.CustomTextField();
+        txtApellido = new models.CustomTextField();
         jlUser4 = new javax.swing.JLabel();
-        txtNombre3 = new models.CustomTextField();
-        cbxEvnt = new models.CustomComboBox();
+        txtEdad = new models.CustomTextField();
+        cbxGenero = new models.CustomComboBox();
         jLabel3 = new javax.swing.JLabel();
         jlUser2 = new javax.swing.JLabel();
-        txtNombre4 = new models.CustomTextField();
+        txtNum = new models.CustomTextField();
         jpBtnInfo = new javax.swing.JPanel();
         jlBtnInfo = new javax.swing.JLabel();
 
@@ -75,10 +91,10 @@ public class jpCreatePersons extends javax.swing.JPanel {
         jlUser1.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jlUser1.setText("EMAIL");
 
-        txtNombre1.setToolTipText("");
-        txtNombre1.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtEmail.setToolTipText("");
+        txtEmail.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtNombre1KeyPressed(evt);
+                txtEmailKeyPressed(evt);
             }
         });
 
@@ -87,10 +103,10 @@ public class jpCreatePersons extends javax.swing.JPanel {
         jlUser3.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jlUser3.setText("APELLIDO");
 
-        txtNombre2.setToolTipText("");
-        txtNombre2.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtApellido.setToolTipText("");
+        txtApellido.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtNombre2KeyPressed(evt);
+                txtApellidoKeyPressed(evt);
             }
         });
 
@@ -99,17 +115,17 @@ public class jpCreatePersons extends javax.swing.JPanel {
         jlUser4.setHorizontalAlignment(javax.swing.SwingConstants.LEFT);
         jlUser4.setText("EDAD");
 
-        txtNombre3.setToolTipText("");
-        txtNombre3.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtEdad.setToolTipText("");
+        txtEdad.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtNombre3KeyPressed(evt);
+                txtEdadKeyPressed(evt);
             }
         });
 
-        cbxEvnt.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "M", "F" }));
-        cbxEvnt.addActionListener(new java.awt.event.ActionListener() {
+        cbxGenero.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "M", "F" }));
+        cbxGenero.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cbxEvntActionPerformed(evt);
+                cbxGeneroActionPerformed(evt);
             }
         });
 
@@ -123,10 +139,10 @@ public class jpCreatePersons extends javax.swing.JPanel {
         jlUser2.setHorizontalAlignment(javax.swing.SwingConstants.RIGHT);
         jlUser2.setText("NUMERO DE TELEFONO");
 
-        txtNombre4.setToolTipText("");
-        txtNombre4.addKeyListener(new java.awt.event.KeyAdapter() {
+        txtNum.setToolTipText("");
+        txtNum.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyPressed(java.awt.event.KeyEvent evt) {
-                txtNombre4KeyPressed(evt);
+                txtNumKeyPressed(evt);
             }
         });
 
@@ -164,17 +180,17 @@ public class jpCreatePersons extends javax.swing.JPanel {
                             .addComponent(jlUser, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(txtNombre, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jlUser1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtNombre1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtEmail, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jlUser3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtNombre2, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jlUser4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtNombre3, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
+                            .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 190, javax.swing.GroupLayout.PREFERRED_SIZE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                            .addComponent(cbxEvnt, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(cbxGenero, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE)
                             .addComponent(jlUser2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(txtNombre4, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
+                            .addComponent(txtNum, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addComponent(jpBtnInfo, javax.swing.GroupLayout.DEFAULT_SIZE, 200, Short.MAX_VALUE))))
                 .addGap(25, 25, 25))
         );
@@ -192,25 +208,25 @@ public class jpCreatePersons extends javax.swing.JPanel {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jLabel3, javax.swing.GroupLayout.PREFERRED_SIZE, 25, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(cbxEvnt, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(cbxGenero, javax.swing.GroupLayout.PREFERRED_SIZE, 28, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jlUser3, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNombre2, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
+                        .addComponent(txtApellido, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jlUser2, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(txtNombre4, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(txtNum, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addComponent(jlUser4, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNombre3, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtEdad, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(15, 15, 15)
                 .addComponent(jlUser1, javax.swing.GroupLayout.PREFERRED_SIZE, 22, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(txtNombre1, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(txtEmail, javax.swing.GroupLayout.PREFERRED_SIZE, 30, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
                 .addComponent(jpBtnInfo, javax.swing.GroupLayout.PREFERRED_SIZE, 45, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(31, 31, 31))
@@ -223,28 +239,78 @@ public class jpCreatePersons extends javax.swing.JPanel {
 
     }//GEN-LAST:event_txtNombreKeyPressed
 
-    private void txtNombre1KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombre1KeyPressed
+    private void txtEmailKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEmailKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombre1KeyPressed
+    }//GEN-LAST:event_txtEmailKeyPressed
 
-    private void txtNombre2KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombre2KeyPressed
+    private void txtApellidoKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtApellidoKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombre2KeyPressed
+    }//GEN-LAST:event_txtApellidoKeyPressed
 
-    private void txtNombre3KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombre3KeyPressed
+    private void txtEdadKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtEdadKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombre3KeyPressed
+    }//GEN-LAST:event_txtEdadKeyPressed
 
-    private void cbxEvntActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxEvntActionPerformed
+    private void cbxGeneroActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cbxGeneroActionPerformed
 
-    }//GEN-LAST:event_cbxEvntActionPerformed
+    }//GEN-LAST:event_cbxGeneroActionPerformed
 
-    private void txtNombre4KeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNombre4KeyPressed
+    private void txtNumKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtNumKeyPressed
         // TODO add your handling code here:
-    }//GEN-LAST:event_txtNombre4KeyPressed
+    }//GEN-LAST:event_txtNumKeyPressed
 
     private void jlBtnInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlBtnInfoMouseClicked
-
+        Nombre = txtNombre.getText();
+        Apellido = txtApellido.getText();
+        edad = Integer.parseInt(txtEdad.getText());
+        Correo = txtEmail.getText();
+        numero = txtNum.getText();
+        Genero = (String) cbxGenero.getSelectedItem();
+        
+        if (!Nombre.isEmpty() && !Apellido.isEmpty() && edad != 0 && !Correo.isEmpty() && !numero.isEmpty()){
+            cPersons person = new cPersons();
+            person.setAge(edad);
+            person.setContacNumber(numero);
+            person.setEmail(Correo);
+            person.setIdUser(idUser);
+            person.setName(Nombre);
+            person.setLastName(Apellido);
+            person.setGender(Genero);
+            String JSONPeticion = person.toJSON();
+            
+            System.out.println(JSONPeticion);
+            String Response = API.sendRequest(URL + "/Persons","POST",JSONPeticion);
+            System.out.println(Response);
+            
+            cPersons personC = null;
+                
+            try{
+                personC = JsonUtils.fromJson(Response, cPersons.class);
+            }
+            catch(Exception ex){
+                System.out.println("No se pudo deserializar la respuesta JSON.");
+            }
+            
+                if (personC != null) {
+                                  
+                    JOptionPane.showMessageDialog(null, "La persona se ha creado con exito.", "Mensaje", JOptionPane.PLAIN_MESSAGE); 
+                
+                    txtNombre.setText("");
+                    txtApellido.setText("");
+                    txtEdad.setText("");
+                    txtEmail.setText("");
+                    txtNum.setText("");
+                
+                } else {
+                    System.out.println("No se pudo deserializar la respuesta JSON.");
+                    JOptionPane.showMessageDialog(null, "El correo electrónico ya está registrado, Ingrese uno nuevo", "Error", JOptionPane.ERROR_MESSAGE);
+                }
+            
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Los campos estan vacios, intente de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
+        
     }//GEN-LAST:event_jlBtnInfoMouseClicked
 
     private void jlBtnInfoMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlBtnInfoMouseEntered
@@ -257,7 +323,7 @@ public class jpCreatePersons extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private models.CustomComboBox cbxEvnt;
+    private models.CustomComboBox cbxGenero;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
@@ -268,10 +334,10 @@ public class jpCreatePersons extends javax.swing.JPanel {
     private javax.swing.JLabel jlUser3;
     private javax.swing.JLabel jlUser4;
     private javax.swing.JPanel jpBtnInfo;
+    private models.CustomTextField txtApellido;
+    private models.CustomTextField txtEdad;
+    private models.CustomTextField txtEmail;
     private models.CustomTextField txtNombre;
-    private models.CustomTextField txtNombre1;
-    private models.CustomTextField txtNombre2;
-    private models.CustomTextField txtNombre3;
-    private models.CustomTextField txtNombre4;
+    private models.CustomTextField txtNum;
     // End of variables declaration//GEN-END:variables
 }

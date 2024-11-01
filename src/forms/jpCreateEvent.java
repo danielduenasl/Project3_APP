@@ -4,11 +4,16 @@
  */
 package forms;
 
+import data.ApiClient;
+import data.JsonUtils;
+import data.cEvents;
+import data.cUsers;
 import frames.MainMenu;
 import java.awt.BorderLayout;
 import java.awt.Color;
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
+import java.time.LocalDateTime;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
 import java.util.Date;
@@ -26,11 +31,14 @@ public class jpCreateEvent extends javax.swing.JPanel {
 
     private MainMenu mainMenu;
     private String nombre;
-    private Date fechaEvent;
-    private LocalTime horaEvent;
+    public Date fechaEvent;
+    public LocalTime horaEvent;
     private String Ubicacion;
     private String URL;
     private long idUser;
+    private String TipoEv;
+    private ApiClient API;
+    private JsonUtils JSON;
     
     /**
      * Creates new form jpCreateEvent
@@ -45,7 +53,6 @@ public class jpCreateEvent extends javax.swing.JPanel {
         Eventoselec(opcion);
     }
     
-    public SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
     private DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
     
     private void Eventoselec(String opcn){
@@ -334,18 +341,57 @@ public class jpCreateEvent extends javax.swing.JPanel {
         nombre = txtNombre.getText();
         fechaEvent = obtenerFechaComoDate();
         horaEvent = txtHora.obtenerHoraComoLocalTime();
+        Ubicacion = (String) cbxUbi.getSelectedItem();
+        TipoEv = (String) cbxEvnt.getSelectedItem();
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ss");
+        String fechaFormateada = dateFormat.format(fechaEvent);
+        LocalDateTime fechaActual = LocalDateTime.now();
         
         
+        if (!nombre.isEmpty() && fechaEvent != null && horaEvent != null){
+            cEvents evento = new cEvents();
+            evento.setIdUser(idUser);
+            evento.setDateEvent(fechaFormateada);
+            evento.setEventName(nombre);
+            evento.setTimEvent(horaEvent);
+            evento.setIdLocation(1);
+            evento.setStatus("Open");
+            evento.setTipoEvent(TipoEv);
+            evento.setEventCreated(fechaActual);
+            String JSONPeticion = evento.toJSON();
+            
+            
+            String Response = API.sendRequest(URL + "/Events/1","POST",JSONPeticion);
+            System.out.println(Response);
+            
+            if (Response.contains("creada/actualizada")) {
+                JOptionPane.showMessageDialog(null, "El evento se ha creado con exito.", "Mensaje", JOptionPane.PLAIN_MESSAGE); 
+                txtNombre.setText("");
+                txtFecha.setText("");
+                txtHora.setText("");
+            
+            } else {
+                System.out.println("No se pudo deserializar la respuesta JSON.");
+                JOptionPane.showMessageDialog(null, "La ubicación y fecha seleccionadas ya están reservadas.", "Error", JOptionPane.ERROR_MESSAGE);
+            }
+        }
+        else {
+            JOptionPane.showMessageDialog(null, "Los campos estan vacios, intente de nuevo.", "Error", JOptionPane.ERROR_MESSAGE);
+        }
         
     }//GEN-LAST:event_jlBtnInfoMouseClicked
 
-    public Date obtenerFechaComoDate() {
+    
+    private SimpleDateFormat dateFormat = new SimpleDateFormat("yyyy-MM-dd");
+
+    public Date obtenerFechaComoDate() { 
         String fechaTexto = txtFecha.getText();
         try {
-            return txtFecha.dateFormat.parse(fechaTexto);
+            // Convierte el texto a Date
+            return dateFormat.parse(fechaTexto);
         } catch (ParseException e) {
             e.printStackTrace();
-            return null;
+            return null; // O lanza una excepción según lo que necesites
         }
     }
     

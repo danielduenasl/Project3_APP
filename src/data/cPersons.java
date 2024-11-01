@@ -95,8 +95,8 @@ public class cPersons {
     return "{"
             + "\"name\": \"" + name + "\", "
             + "\"lastName\": \"" + lastName + "\", "
-            + "\"email\": \"" + email + "\", "
             + "\"contactNumber\": \"" + contactNumber + "\", "
+            + "\"email\": \"" + email + "\", "        
             + "\"gender\": \"" + gender + "\", "
             + "\"age\": " + age + ", "
             + "\"idUser\": " + idUser
