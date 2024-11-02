@@ -37,7 +37,7 @@ public class jpPersons extends javax.swing.JPanel {
         
         String response = ApiClient.sendRequest(URL + "/Users/" + idUser + "/Persons", "GET", null);
         List<cPersons> persons = JsonUtils.fromJson(response, new TypeToken<List<cPersons>>() {}.getType());
-        
+        System.out.println(response);
         customTable1.loadEventData(persons);
         customTable1.revalidate();
         customTable1.repaint();

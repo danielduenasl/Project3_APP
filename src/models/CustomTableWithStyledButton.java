@@ -10,6 +10,7 @@ package models;
  */
 
 import data.cEvents;
+import data.cPersons;
 import javax.swing.*;
 import javax.swing.table.*;
 import java.awt.*;
@@ -49,6 +50,32 @@ public class CustomTableWithStyledButton extends JTable {
                 event.getTimEvent(),
                 event.getIdLocation(),
                 "Ver Más"
+            });
+        }
+    }
+    
+    public void changeModel(String[] columnNames, Object[][] data) {
+        if (tableModel == null) {
+            throw new IllegalStateException("tableModel no está inicializado.");
+        }
+
+        tableModel.setDataVector(data, columnNames);
+    }
+    
+    public void loadPersonData(List<cPersons> persons) {
+        if (tableModel == null) {
+            throw new IllegalStateException("tableModel no está inicializado.");
+        }
+        
+        tableModel.setRowCount(0);
+
+        for (cPersons person : persons) {
+            tableModel.addRow(new Object[]{
+                person.getName(),
+                person.getLastName(),
+                person.getAge(),
+                person.getGender(),
+                "Agregar"
             });
         }
     }

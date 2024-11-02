@@ -37,6 +37,8 @@ public class jpInfoEvent extends javax.swing.JPanel {
         txtFecha.setText(eventoA.getDateEvent());
         txtHora.setText(String.valueOf(eventoA.getTimEvent()));
         
+        cbxEstado.addItem(eventoA.getStatus());
+        
         URL = URLapi;
         idUser = idusuario;
         Eventoselec(eventoA.getTipoEvent());
@@ -301,7 +303,7 @@ public class jpInfoEvent extends javax.swing.JPanel {
     }//GEN-LAST:event_cbxEvnt1ActionPerformed
 
     private void jlBtnInfoMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jlBtnInfoMouseClicked
-        AddPersons addPersons = new AddPersons();
+        AddPersons addPersons = new AddPersons(idUser, URL);
         addPersons.show();
     }//GEN-LAST:event_jlBtnInfoMouseClicked
 

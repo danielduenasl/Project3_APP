@@ -4,7 +4,24 @@
  */
 package frames;
 
+import com.google.gson.reflect.TypeToken;
+import data.ApiClient;
+import data.JsonUtils;
+import data.cEvents;
+import data.cPersons;
+import forms.jpContentMain;
+import static forms.jpEvents.findEventByDateAndLocation;
+import forms.jpInfoEvent;
+import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
+import java.util.List;
+import javax.swing.JButton;
+import javax.swing.JTable;
+import javax.swing.SwingUtilities;
+import javax.swing.table.DefaultTableModel;
+import models.CustomTableWithStyledButton;
 
 /**
  *
@@ -12,11 +29,51 @@ import java.awt.Color;
  */
 public class AddPersons extends javax.swing.JFrame {
 
+    
+    private long idUser;
+    private String URL;
+    private ApiClient API;
+    private DefaultTableModel tableModel;
     /**
      * Creates new form DatosModif
      */
-    public AddPersons() {
+    public AddPersons(long idusuario, String URLapi) {
         initComponents();
+        
+        idUser = idusuario;
+        URL = URLapi;
+        API = new ApiClient();
+        
+        
+        String[] newColumnNames = {"Nombre", "Apellido", "Edad", "Género", "Agregar"};
+        Object[][] newData = {
+            {"---", "---", "---", "---", "---"}
+        };
+
+        tablaPersonas.changeModel(newColumnNames, newData);
+        
+        String response = ApiClient.sendRequest(URL + "/Users/" + idUser + "/Persons", "GET", null);
+        List<cPersons> persons = JsonUtils.fromJson(response, new TypeToken<List<cPersons>>() {}.getType());
+        
+        tablaPersonas.loadPersonData(persons);
+        
+        tablaPersonas.setButtonActionListener(new ActionListener() {
+        @Override
+        public void actionPerformed(ActionEvent e) {
+            JButton button = (JButton) e.getSource();
+            JTable table = (JTable) SwingUtilities.getAncestorOfClass(JTable.class, button);
+
+            if (table != null) {
+                int row = table.convertRowIndexToModel(table.getSelectedRow());
+
+                if (row != -1) {
+                    String FechaEvent = (String) tablaPersonas.getValueAt(row, 1);
+                    long idLocation = (long) tablaPersonas.getValueAt(row, 3);
+                    
+                    }
+                }
+            }
+        });
     }
 
     /**
@@ -39,7 +96,7 @@ public class AddPersons extends javax.swing.JFrame {
         jpBtnInfo = new javax.swing.JPanel();
         jlBtnInfo = new javax.swing.JLabel();
         jScrollPane2 = new javax.swing.JScrollPane();
-        customTableWithStyledButton1 = new models.CustomTableWithStyledButton();
+        tablaPersonas = new models.CustomTableWithStyledButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setLocationByPlatform(true);
@@ -134,7 +191,7 @@ public class AddPersons extends javax.swing.JFrame {
         });
         jpBtnInfo.add(jlBtnInfo, java.awt.BorderLayout.CENTER);
 
-        jScrollPane2.setViewportView(customTableWithStyledButton1);
+        jScrollPane2.setViewportView(tablaPersonas);
 
         javax.swing.GroupLayout jpContentLayout = new javax.swing.GroupLayout(jpContent);
         jpContent.setLayout(jpContentLayout);
@@ -244,16 +301,17 @@ public class AddPersons extends javax.swing.JFrame {
         //</editor-fold>
         //</editor-fold>
 
+        long idus = 1;
+        String urll = "a";
         /* Create and display the form */
         java.awt.EventQueue.invokeLater(new Runnable() {
             public void run() {
-                new AddPersons().setVisible(true);
+                new AddPersons(idus, urll).setVisible(true);
             }
         });
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private models.CustomTableWithStyledButton customTableWithStyledButton1;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel2;
     private javax.swing.JScrollPane jScrollPane2;
@@ -265,5 +323,6 @@ public class AddPersons extends javax.swing.JFrame {
     private javax.swing.JPanel jpClose;
     private javax.swing.JPanel jpContent;
     private javax.swing.JPanel jpMin;
+    private models.CustomTableWithStyledButton tablaPersonas;
     // End of variables declaration//GEN-END:variables
 }

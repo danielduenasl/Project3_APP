@@ -237,7 +237,7 @@
 
               <Layout class="org.netbeans.modules.form.compat2.layouts.support.JScrollPaneSupportLayout"/>
               <SubComponents>
-                <Component class="models.CustomTableWithStyledButton" name="customTableWithStyledButton1">
+                <Component class="models.CustomTableWithStyledButton" name="tablaPersonas">
                 </Component>
               </SubComponents>
             </Container>

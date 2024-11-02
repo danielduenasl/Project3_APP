@@ -11,6 +11,7 @@ import frames.Login;
 import frames.MainMenu;
 import java.awt.BorderLayout;
 import java.awt.Color;
+import java.awt.event.KeyEvent;
 import javax.swing.JOptionPane;
 
 /**
@@ -216,7 +217,9 @@ public class jpLogin extends javax.swing.JPanel {
     }//GEN-LAST:event_jloginKeyPressed
 
     private void txtUserKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtUserKeyPressed
-
+        if(evt.getKeyCode()== KeyEvent.VK_TAB) {
+            txtpassword.requestFocus();
+        } 
     }//GEN-LAST:event_txtUserKeyPressed
 
     private void txtpasswordKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txtpasswordKeyPressed
