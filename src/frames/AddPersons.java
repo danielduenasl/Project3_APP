@@ -67,9 +67,7 @@ public class AddPersons extends javax.swing.JFrame {
                 int row = table.convertRowIndexToModel(table.getSelectedRow());
 
                 if (row != -1) {
-                    String FechaEvent = (String) tablaPersonas.getValueAt(row, 1);
-                    long idLocation = (long) tablaPersonas.getValueAt(row, 3);
-                    
+
                     }
                 }
             }

@@ -209,7 +209,15 @@ public class jpCreateUser extends javax.swing.JPanel {
                 String JSONPeticion = user.toJSON();
                 
                 String Response = API.sendRequest(URL + "/Users","POST",JSONPeticion);
-                cUsers userC = JsonUtils.fromJson(Response, cUsers.class);
+                
+                cUsers userC = null;
+                try{
+                    userC = JsonUtils.fromJson(Response, cUsers.class);
+                }
+                catch (Exception ex){
+                    
+                }
+                
                 if (userC != null) {
                     System.out.println("Usuario: " + user);
                     

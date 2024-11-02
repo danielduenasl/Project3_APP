@@ -60,6 +60,14 @@ public class CustomTableWithStyledButton extends JTable {
         }
 
         tableModel.setDataVector(data, columnNames);
+
+        TableColumn buttonColumn = getColumnModel().getColumn(columnNames.length - 1); // Última columna
+        buttonColumn.setCellRenderer(new ButtonRenderer());
+        buttonColumn.setCellEditor(new ButtonEditor(new JCheckBox(), this));
+
+        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
+        buttonColumn.setCellRenderer(centerRenderer);
     }
     
     public void loadPersonData(List<cPersons> persons) {
