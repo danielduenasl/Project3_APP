@@ -68,11 +68,32 @@ public class AddPersons extends javax.swing.JFrame {
 
                 if (row != -1) {
 
+                        String Nombre = (String) tablaPersonas.getValueAt(row, 0);
+                        String Apellido = (String) tablaPersonas.getValueAt(row, 1);
+                        String Genero = (String) tablaPersonas.getValueAt(row, 3);
+                        
+                        cPersons persona = findPerson(persons, Nombre, Apellido, Genero);
+                        
+                    
                     }
                 }
             }
         });
     }
+    
+    
+
+    public static cPersons findPerson(List<cPersons> personsList, String name, String lastName, String gender) {
+        for (cPersons person : personsList) {
+            if (person.getName().equalsIgnoreCase(name) &&
+                person.getLastName().equalsIgnoreCase(lastName) &&
+                person.getGender().equalsIgnoreCase(gender)) {
+                return person;
+            }
+        }
+        return null; 
+    }
+
 
     /**
      * This method is called from within the constructor to initialize the form.
